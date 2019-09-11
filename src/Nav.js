@@ -1,18 +1,32 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 class Nav extends React.Component {
   render() {
     return (
       <div class="nav">
         <ul>
-          <li><i class="fa fa-cloud"></i><span>Pogoda</span></li>
-          <li><i class="fa fa-users"></i><span>Użytkownicy</span></li>
-          <li><i class="fa fa-cogs"></i><span>Czujniki</span></li>
-          <li><i class="fa fa-warning"></i><span>Sys info</span></li>
+          <MenuItem pic="fa fa-cloud" title="Pogoda" path="/weather"/>
+          <MenuItem pic="fa fa-users" title="Użytkownicy" path="/"/>
+          <MenuItem pic="fa fa-cogs" title="Czujniki" path="/a"/>
+          <MenuItem pic="fa fa-warning" title="Sys info" path="/ab"/>
         </ul>
       </div>
     );
   }
  }
 
+ class MenuItem extends React.Component {
+   render() {
+     return(
+      
+        <NavLink exact to={this.props.path} activeClassName="active" className="inactive">
+          <li>
+          <i class={this.props.pic}></i>{this.props.title}
+          </li>
+        </NavLink>
+     );
+   }
+ }
+ 
  export default Nav;
