@@ -1,0 +1,64 @@
+header {
+    background-color: #05A8F5;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    height: 50px;
+  }
+
+header div {
+    color: ghostwhite;
+}
+  
+header h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    bottom: 10px;
+    left: 20px;
+}
+  
+.container {
+    display: none;
+}
+
+header div.avatar-circle {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+}
+  
+.bar1, .bar2, .bar3 {
+    background-color: ghostwhite;
+    width: 30px;
+    height: 4px;
+    transition: 0.4s;
+    margin: 5px 0;
+}
+
+.change .bar1 {
+    transform: rotate(-45deg) translate(-8px, 6px);
+}
+  
+.change .bar2 {opacity: 0;}
+  
+.change .bar3 {
+    transform: rotate(45deg) translate(-6px, -6px);
+}
+
+@media screen and (max-width: 400px)  and (orientation: portrait) {
+
+    .container {
+        position: relative;
+        top: 7px;
+        left: 8px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    header h2 {
+        position: relative;
+        bottom: 47px;
+        left: 45px;
+    }
+
+}

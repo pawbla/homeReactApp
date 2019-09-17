@@ -3,14 +3,6 @@ body {
   margin: 0 auto;
 }
 
-header {
-  background-color: #05A8F5;
-  position: fixed;
-	width: 100%;
-  z-index: 10;
-  height: 50px;
-}
-
 main {
   position: relative;
   top: 60px;
@@ -19,27 +11,6 @@ main {
   display: grid;
   grid-template-columns: minmax(200px, 250px) 3fr minmax(200px, 250px);
   grid-gap: 15px;
-}
-
-header div {
-  color: ghostwhite;
-}
-
-header h2 {
-  font-family: Arial, Helvetica, sans-serif;
-  position: relative;
-  bottom: 10px;
-  left: 20px;
-}
-
-header i.fa {
-  display: none;
-}
-
-header div.avatar-circle {
-  position: absolute;
-  top: 6px;
-  right: 20px;
 }
 
 ul {
@@ -68,6 +39,11 @@ li i {
 
 .nav {
   
+}
+
+
+header .nav {
+  display: none;
 }
 
 .main {
@@ -120,26 +96,37 @@ li i {
   }
 }
 
-@media screen and (orientation: portrait) {
-  header div h2 {
-    position: relative;
-    bottom: 42px;
-    left: 48px;
+@media screen and (max-width: 400px) and (orientation: portrait) {
+
+  main .nav {
+    display: none;
   }
 
-  .nav {
-    display: none;
+  header .nav {
+    position: fixed;
+    left: 0px;
+    top: 55px;
+    height: 85%;
+    border-right: 1px solid gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    background-color: ghostwhite;
+  }
+
+  header .navHide {
+    display: hide;
+  }
+
+  header .navShow {
+    display: block;
+  }
+
+  .nav ul {
+    box-shadow: none;
   }
 
   main {
     grid-template-columns: 1fr;
-  }
-
-  header i.fa {
-    position: relative;
-    top: 9px;
-    left: 10px;
-    display: inline;
   }
 }
 
