@@ -1,5 +1,4 @@
 import React from 'react';
-import {Nav} from "./Nav";
 import './header.css';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
@@ -31,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    [theme.breakpoints.down('600')]: {
+    [`${theme.breakpoints.down('400')} and (orientation: portrait)`]: {
       display: 'none',
     },
   }, 
@@ -41,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     color: '#f8f8ff',
     margin: '0px',
-    [theme.breakpoints.up('600')]: {
+    [theme.breakpoints.up('400')]: {
       display: 'none',
     },
   },
