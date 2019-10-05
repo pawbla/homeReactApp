@@ -66,6 +66,19 @@ function Nav(props) {
   );
 }
 
+function UserMenuBox() {
+  const styles = useStyles();
+  return(
+    <div>
+      <ul className={styles.list}>
+        <MenuElement pic="fa fa-cog" title="Ustawienia" path="/settings"/>
+        <MenuElement pic="fa fa-window-close" title="Wyloguj" path="/logout"/>
+      </ul>
+    </div>
+  );
+
+}
+
 function MenuElement(props) {
   const styles = useStyles();
 
@@ -78,4 +91,4 @@ function MenuElement(props) {
     );
 }
  
-export {Nav};
+export {Nav, UserMenuBox};
