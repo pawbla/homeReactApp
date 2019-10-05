@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -9,8 +10,10 @@ const useStyles = makeStyles(theme => ({
     margin: '0',
     padding: '0',
     boxShadow: '0 0 5px gray',
-    [`${theme.breakpoints.down('400')} and (orientation: portrait)`]: {
-      boxShadow: 'none'
+    "& Button": {
+        [theme.breakpoints.up('400')]: {
+          display: 'none',
+        }     
     }
   },
   menuItem: {
@@ -36,7 +39,9 @@ const useStyles = makeStyles(theme => ({
   button: {
     marginLeft: '12px',
     [theme.breakpoints.down('800')]: {
-      display: 'none',
+      [theme.breakpoints.up('400')]: {
+        display: 'none',
+      },
     }
   }
 }));
@@ -47,17 +52,21 @@ function Nav(props) {
   return (
     <div>
       <ul className={styles.list}>
-        <MenuItem pic="fa fa-home" title="Home" path="/"/>
-        <MenuItem pic="fa fa-cloud" title="Pogoda" path="/weather"/>
-        <MenuItem pic="fa fa-users" title="Użytkownicy" path="/users"/>
-        <MenuItem pic="fa fa-cogs" title="Czujniki" path="/sensor"/>
-        <MenuItem pic="fa fa-warning" title="Sys info" path="/sysinfo"/>
+        <Button onClick={props.onClick} className={styles.menuItem}>
+          <i className="fa fa-close"></i>
+          <span className={styles.button}>Zamknij</span>
+        </Button>
+        <MenuElement pic="fa fa-home" title="Home" path="/"/>
+        <MenuElement pic="fa fa-cloud" title="Pogoda" path="/weather"/>
+        <MenuElement pic="fa fa-users" title="Użytkownicy" path="/users"/>
+        <MenuElement pic="fa fa-cogs" title="Czujniki" path="/sensor"/>
+        <MenuElement pic="fa fa-warning" title="Sys info" path="/sysinfo"/>
       </ul>
     </div>
   );
 }
 
-function MenuItem(props) {
+function MenuElement(props) {
   const styles = useStyles();
 
     return(

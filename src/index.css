@@ -44,10 +44,6 @@ main {
     display: none;
   }
 
-  /*.nav ul {
-    box-shadow: none;
-  }*/
-
   main {
     grid-template-columns: 1fr;
   }

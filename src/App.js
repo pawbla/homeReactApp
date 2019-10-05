@@ -12,7 +12,9 @@ class App extends React.Component {
       <Router>
         <Header />
         <main>
-          <Nav cssClass="nav"/>         
+          <div className="nav">
+            <Nav/> 
+          </div>      
           <div className="main">
             <Route exact path="/" component={Home} />
             <Route path="/weather" component={Weather} />

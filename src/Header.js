@@ -8,7 +8,9 @@ import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import { IconButton, Avatar } from '@material-ui/core';
 import {makeStyles } from '@material-ui/core/styles';
+import {Nav} from './Nav';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Popover from '@material-ui/core/Popover';
 
 const useStyles = makeStyles(theme => ({
   space: {
@@ -54,50 +56,77 @@ const useStyles = makeStyles(theme => ({
     height: '30px', 
     margin: '3px',
     padding: '4px'
+  },
+  monileMenu: {
+    position: 'relative',
+    top: '100px',
+    left: '20px'
   }
 }));
 
 function Header() {
   const styles = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-    return(
-      <div className={styles.space}>
-        <AppBar className={styles.appBar} position="static">
-          <Toolbar>
-            <div className={styles.mobile}>
-              <IconButton
-                edge="start"
-                color="inherit">
-                <MenuIcon />
-              </IconButton>
-            </div>
-            <Typography variant="h5" noWrap className={styles.title}>
-              Home System Service
-            </Typography>
-            <div className={styles.space} />
-            <div className={styles.desktop}>
-              <IconButton className={styles.iconButton}>
-                  <Badge badgeContent={12} color="secondary">
-                    <NotificationsIcon />
-                  </Badge>
-              </IconButton>
-              <IconButton
-                size="small"
-                className={styles.iconButton}>
-                  <Avatar className={styles.avatar}>PB</Avatar>
-              </IconButton>
-            </div>
-            <div className={styles.mobile}>
-              <IconButton
-                edge="end"
-                color="inherit">
-                <MoreIcon />
-              </IconButton>
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return(
+    <div className={styles.space}>
+      <AppBar className={styles.appBar} position="static">
+        <Toolbar>
+          <div className={styles.mobile}>
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-expanded="true"
+              aria-controls="mobileMenu" 
+              aria-haspopup="true"
+              onClick={handleClick}>
+              <MenuIcon />
+            </IconButton>
+            <Popover
+              id="mobileMenu"
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={handleClose}>
+              
+              <Nav onClick={handleClose}/>
+            </Popover>
+          </div>
+          <Typography variant="h5" noWrap className={styles.title}>
+            Home System Service
+          </Typography>
+          <div className={styles.space} />
+          <div className={styles.desktop}>
+            <IconButton className={styles.iconButton}>
+                <Badge badgeContent={12} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+            </IconButton>
+            <IconButton
+              size="small"
+              className={styles.iconButton}>
+                <Avatar className={styles.avatar}>PB</Avatar>
+            </IconButton>
+          </div>
+          <div className={styles.mobile}>
+            <IconButton
+              edge="end"
+              color="inherit">
+              <MoreIcon />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
  export default Header;
