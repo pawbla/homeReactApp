@@ -13,10 +13,6 @@ main {
   grid-gap: 15px;
 }
 
-.main {
-  border: 1px dotted red;
-}
-
 .aside {
   box-shadow: 0 0 5px gray;
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import './header.css';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -11,7 +10,6 @@ import {makeStyles } from '@material-ui/core/styles';
 import {Nav, UserMenuBox} from './Nav';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Popover from '@material-ui/core/Popover';
-import Menu from '@material-ui/core/Menu';
 
 const useStyles = makeStyles(theme => ({
   space: {
@@ -97,7 +95,6 @@ function Header() {
 }
 
 function MobileMenu() {
-  const styles = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = event => {

@@ -16,8 +16,8 @@ class App extends React.Component {
             <Nav/> 
           </div>      
           <div className="main">
-            <Route exact path="/" component={Home} />
-            <Route path="/weather" component={Weather} />
+            <Route exact path="/index" component={Home} />
+            <Route exact path="/weather" component={Weather} />
           </div>
           <Aside />
         </main>

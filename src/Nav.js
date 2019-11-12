@@ -56,7 +56,7 @@ function Nav(props) {
           <i className="fa fa-close"></i>
           <span className={styles.button}>Zamknij</span>
         </Button>
-        <MenuElement pic="fa fa-home" title="Home" path="/"/>
+        <MenuElement pic="fa fa-home" title="Home" path="/index"/>
         <MenuElement pic="fa fa-cloud" title="Pogoda" path="/weather"/>
         <MenuElement pic="fa fa-users" title="Użytkownicy" path="/users"/>
         <MenuElement pic="fa fa-cogs" title="Czujniki" path="/sensor"/>
