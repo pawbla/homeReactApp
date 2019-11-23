@@ -2,28 +2,41 @@ import React from 'react';
 import Header from './Header';
 import Aside from './Aside';
 import {Nav} from './Nav';
-import Home from './Home';
-import Weather from './Weather'
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Routes from './Routes';
+import LoginPage from './login/LoginPage';
 
 class App extends React.Component {
   render() {
     return (
       <Router>
-        <Header />
-        <main>
-          <div className="nav">
-            <Nav/> 
-          </div>      
-          <div className="main">
-            <Route exact path="/index" component={Home} />
-            <Route exact path="/weather" component={Weather} />
-          </div>
-          <Aside />
-        </main>
+        <Switch>
+          <Route exact path="/login" component={LoginPage} />
+          <Route component={MainComponent}/>
+        </Switch>
       </Router>
     );
   }
  }
 
  export default App;
+
+class MainComponent extends React.Component {
+  render() {
+    return(
+      <div>
+        <Header />
+        <main>
+          <div className="nav">
+            <Nav/> 
+          </div>     
+          <div className="main">
+            <Routes />
+          </div>
+          <Aside />
+        </main>
+      </div>
+    );
+  }
+
+}
