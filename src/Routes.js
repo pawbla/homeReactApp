@@ -3,11 +3,15 @@ import { Route, Switch } from "react-router-dom";
 import Home from './Home';
 import Weather from './Weather'
 
-export default function Routes() {
+export default function Routes(props) {
     return(
         <Switch>
-            <Route exact path="/index" component={Home} />
-            <Route exact path="/weather" component={Weather} />
+            <Route exact path="/index">
+                <Home />
+            </Route>
+            <Route exact path="/weather">
+                <Weather baseUrl={props.baseUrl} />
+            </Route>
         </Switch>
     );
 }

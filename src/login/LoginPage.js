@@ -63,7 +63,6 @@ const useStyles = makeStyles(theme => ({
     buttons: {
         marginTop: '25px',
     },
-
 }));
 
 export default function LoginPage () {

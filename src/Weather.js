@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import WeatherRender from './WeatherRender'
 
-function Weather() {
+const endpoint = 'weather';
+
+function Weather(props) {
  
   const [datas, setDatas] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/v1/weather`)
+    fetch(`${props.baseUrl}${endpoint}`)
       .then(res => res.json())
       .then(json => setDatas(json));
   }, []);

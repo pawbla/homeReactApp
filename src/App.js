@@ -4,15 +4,22 @@ import Aside from './Aside';
 import {Nav} from './Nav';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Routes from './Routes';
-import LoginPage from './login/LoginPage';
+import LoginPage from './login/LoginPage'
 
 class App extends React.Component {
+
+  baseUrl = "http://localhost:8080/api/v1/";
+
   render() {
     return (
       <Router>
         <Switch>
-          <Route exact path="/login" component={LoginPage} />
-          <Route component={MainComponent}/>
+          <Route exact path="/login">
+            <LoginPage />
+          </Route>
+          <Route>
+            <MainComponent baseUrl={this.baseUrl}/>
+          </Route>
         </Switch>
       </Router>
     );
@@ -22,7 +29,8 @@ class App extends React.Component {
  export default App;
 
 class MainComponent extends React.Component {
-  render() {
+
+  render(props) {
     return(
       <div>
         <Header />
@@ -31,7 +39,7 @@ class MainComponent extends React.Component {
             <Nav/> 
           </div>     
           <div className="main">
-            <Routes />
+            <Routes baseUrl={this.props.baseUrl}/>
           </div>
           <Aside />
         </main>
