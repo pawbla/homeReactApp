@@ -4,7 +4,7 @@ import Aside from './Aside';
 import {Nav} from './Nav';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Routes from './Routes';
-import LoginPage from './login/LoginPage'
+import LoginPage from './Components/LoginPage'
 
 class App extends React.Component {
 
@@ -15,7 +15,7 @@ class App extends React.Component {
       <Router>
         <Switch>
           <Route exact path="/login">
-            <LoginPage />
+            <LoginPage testowy="lalala" baseUrl={this.baseUrl}/>
           </Route>
           <Route>
             <MainComponent baseUrl={this.baseUrl}/>
