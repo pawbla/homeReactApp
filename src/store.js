@@ -10,7 +10,7 @@ const persistConfig = {
     storage: storage,
     // Whitelist (Save Specific Reducers)
     whitelist: [
-      'jwtToken',
+      'loggedUser'
     ],
     // Blacklist (Don't Save Specific Reducers)
     blacklist: [

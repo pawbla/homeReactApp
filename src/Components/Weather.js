@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WeatherRender from './WeatherRender';
 import { connect } from "react-redux";
+import { constants } from '../constants/constants';
 
 const endpoint = 'weather';
 
@@ -9,9 +10,7 @@ function Weather(props) {
   const [datas, setDatas] = useState(null);
 
   useEffect(() => {
-    console.log("llll" + localStorage.getItem('jwtToken'));
-    console.log("==== jwt Toke: " + props.jwtToken);
-    fetch(`${props.baseUrl}${endpoint}`, {
+    fetch(`${constants.baseUrl}${endpoint}`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
@@ -30,9 +29,9 @@ function Weather(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log("State: " + JSON.stringify(state));
+  console.log("weather" + JSON.stringify(state));
   return {
-    jwtToken: state.jwtToken
+    jwtToken: state.loggedUser.jwtToken,
   }
 };
 

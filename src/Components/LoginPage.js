@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LoginPageRenderer from './LoginPageRenderer';
-import { jwtTokenFetched } from '../actions/';
+import { setJwtTokenFetched,  setLoggedUserFetched } from '../actions/';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
+import { constants } from '../constants/constants';
 
 function LoginPage (props) {
+
+    //to clear logged user until loggout is not implemented
+    useEffect(() => {
+        console.log("========== clear data on enter =============");
+        props.setJwtTokenFetched();
+      }, []);
 
     const endpoint = 'user';
 
@@ -25,13 +32,11 @@ function LoginPage (props) {
     function handleLogin(event) {
         event.preventDefault();
         getJWTToken();
-        getLogedUser();
-        alert(`Użytkownik ${values.text} został zalogowany`);
-        props.history.push('/index');
+   
     } 
 
-    function getJWTToken() {
-        fetch(loginUrl, {
+    async function getJWTToken() {
+        await fetch(loginUrl, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
@@ -45,14 +50,15 @@ function LoginPage (props) {
             }
             return ""          
         })
-        .then(json => {if (json != "") {
-            props.jwtTokenFetched(json.access_token);
+        .then(json => {if (json !== "") {
+                props.setJwtTokenFetched(json.access_token);
+                getLogedUser();
             }             
         });
     }
 
-    function getLogedUser() {
-        fetch(`${props.baseUrl}${endpoint}?login=${values.text}`, {
+    async function getLogedUser() {
+        await fetch(`${constants.baseUrl}${endpoint}?login=${values.text}`, {
             method: 'GET',
             headers: {
               "Content-Type": "application/json",
@@ -60,7 +66,12 @@ function LoginPage (props) {
             }
           })
             .then(res => res.json())
-            .then(json => console.log(JSON.stringify(json)));
+            .then(json => {
+                console.log("loginpage -- user updated: " + JSON.stringify(props.jwtToken));
+                props.setLoggedUserFetched(json);
+                console.log("===== 3==== ");
+                props.history.push('/index');
+            });
     }
 
     return(
@@ -75,10 +86,10 @@ function LoginPage (props) {
 
 const mapStateToProps = (state) => {
     return {
-      jwtToken: state.jwtToken
+      jwtToken: state.loggedUser.jwtToken
     }
 };
 
-const mapDispatchToProps = { jwtTokenFetched };
+const mapDispatchToProps = { setJwtTokenFetched, setLoggedUserFetched };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginPage));

@@ -6,19 +6,22 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Routes from './Routes';
 import LoginPage from './Components/LoginPage'
 
+
+//Mocked service for testing purpose, remove when deployed for integration
+import { mockedBackend } from './helpers/mockedBackend';
+mockedBackend();
+
 class App extends React.Component {
 
-  baseUrl = "http://localhost:8080/api/v1/";
-
-  render() {
+    render() {
     return (
       <Router>
         <Switch>
           <Route exact path="/login">
-            <LoginPage testowy="lalala" baseUrl={this.baseUrl}/>
+            <LoginPage/>
           </Route>
           <Route>
-            <MainComponent baseUrl={this.baseUrl}/>
+            <MainComponent/>
           </Route>
         </Switch>
       </Router>
@@ -30,7 +33,7 @@ class App extends React.Component {
 
 class MainComponent extends React.Component {
 
-  render(props) {
+  render() {
     return(
       <div>
         <Header />
@@ -39,7 +42,7 @@ class MainComponent extends React.Component {
             <Nav/> 
           </div>     
           <div className="main">
-            <Routes baseUrl={this.props.baseUrl}/>
+            <Routes/>
           </div>
           <Aside />
         </main>

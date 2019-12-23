@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import { jwtToken } from "./jwtTokenReducer";
+import { loggedUser } from "./logginReducer";
 
 export default combineReducers({
-    jwtToken
+    loggedUser
 });
