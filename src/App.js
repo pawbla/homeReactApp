@@ -5,21 +5,21 @@ import {Nav} from './Nav';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Routes from './Routes';
 import LoginPage from './Components/LoginPage'
+import Logout from './Components/Logout'
 
 
 //Mocked service for testing purpose, remove when deployed for integration
 import { mockedBackend } from './helpers/mockedBackend';
-mockedBackend();
+//mockedBackend();
 
 class App extends React.Component {
 
-    render() {
+  render() {
     return (
       <Router>
         <Switch>
-          <Route exact path="/login">
-            <LoginPage/>
-          </Route>
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/logout" component={Logout} />
           <Route>
             <MainComponent/>
           </Route>

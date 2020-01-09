@@ -42,8 +42,10 @@ export function mockedBackend() {
                         lastName: "mockedLastName",
                         role: "user"
                     }
-                    resolve({ ok: true, json: () => responeBody
-                    });                    
+                    resolve({ ok: true, json: () => responeBody});     
+                //Mock for revoking access token when logout              
+                } if (url.endsWith('logout')) {
+                    resolve({ ok: true, json: () => ""});  
                 } else {
                     console.log("== MOCK == Uncovered request, status: NOK");
                     reject('Incorrect datas');

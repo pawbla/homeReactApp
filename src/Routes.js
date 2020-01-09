@@ -11,6 +11,7 @@ export default function Routes() {
             <Switch>
                 <ExtendedRouter exact path="/index" roles={roles.USER} component={Home}/>
                 <ExtendedRouter exact path="/weather" roles={roles.USER} component={Weather} />
+                <ExtendedRouter path="/" roles={roles.USER} />
             </Switch>
         </div>
     );

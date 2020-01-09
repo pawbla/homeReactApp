@@ -10,7 +10,6 @@ const ExtendedRouter = ({component: Component, roles, ...params}) => (
         }
         //user is authenticated but no role to access the resources
         if ((roles && roles.indexOf(params.role) === -1) || !roles) {
-            console.log("== redirfect");
             return <Redirect to={{ pathname: '/index'}} />
         }
         return <Component {...props} />
