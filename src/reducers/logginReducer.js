@@ -1,17 +1,16 @@
 export const loggedUser = (state = '', action) => {
     switch (action.type) {
       case 'FETCHED_JWT_TOKEN_SUCCESS':
+        console.log("===> " + JSON.stringify(action));
         return {
           ...state,
-          jwtToken: action.jwtToken,
-          isBeingAuthenticated: true,
+          jwtToken: action.authResp.access_token,
           isAuthenticated: false
         }
       case 'FETCHED_USER_DATA_SUCCESS':
         return {
           ...state, 
             isAuthenticated: true,
-            isBeingAuthenticated: false,
             user: action.user.login,
             role: action.user.role
         }
@@ -20,7 +19,6 @@ export const loggedUser = (state = '', action) => {
             ...state,
             jwtToken: "",
             isAuthenticated: false,
-            isBeingAuthenticated: false,
             user: "",
             role: ""
           }
