@@ -13,17 +13,18 @@ export const callGetJwtTokenApi = (user, password) => {
       },
       body: `grant_type=password&username=${user}&password=${password}`
     })
-    .then(res => {
-        if (res.ok) {
-            return res.json()
+    .then(response => {
+        if (!response.ok) {
+          console.log("Response: " + JSON.stringify(response));
+          console.log("Response 2: " + response.status + " aaa " + response.statusText);
+          throw new Error(`Received response code: ${response.status} ${response.statusText}`);
         }
-        return ""          
+        return response.json()          
     })
 }
 
-export const callGetLoggedUserApi = (endpoint, queryParams, token) => {
+export const callGetApi = (endpoint, queryParams, token) => {
     const url = `${apiUrl}${endpoint}${queryParams}`;
-    console.log("==> get logged user url: " + url);
     return fetch(url, {
         method: 'GET',
         headers: {
@@ -31,5 +32,10 @@ export const callGetLoggedUserApi = (endpoint, queryParams, token) => {
           'Authorization': 'Bearer ' + token,
         }
       })
-      .then(res => res.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+        }
+        return response.json()          
+    })
 }

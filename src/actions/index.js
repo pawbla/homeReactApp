@@ -1,4 +1,4 @@
-import {callGetLoggedUserApi, callGetJwtTokenApi} from '../libs/callRestApi';
+import {callGetApi, callGetJwtTokenApi} from '../libs/callRestApi';
 
 const setJwtTokenFetched = (authResp) => ({
   type: 'FETCHED_JWT_TOKEN_SUCCESS',
@@ -10,31 +10,39 @@ const setLoggedUserFetched = (user) => ({
   user
 });
 
-export const logOutUser = () => ({
-  type: 'LOG_OUT_USER'
+export const logOutUserOrError = () => ({
+  type: 'LOG_OUT_USER_OR_ERROR'
 });
 
 const fetchJwtToken = (user, password) => {
   return async (dispatch) => {
-    console.log("==== Jlog in");
     await callGetJwtTokenApi(user, password)
-      .then(json => dispatch(setJwtTokenFetched(json)));
+      .then(json => dispatch(setJwtTokenFetched(json)))
+      .catch(error => {
+        alert("Niepoprawne dane użytkownika. \n" + error);
+        dispatch(logOutUserOrError());
+      });
   }
 }
 
 const fetchUserData = (user) => {
   return async (dispatch, getState) => {
-    console.log("==== JWT TOKEN: " + getState().loggedUser.jwtToken);
     const queryParams = `?login=${user}`;
     const endpoint = 'user';
-    await callGetLoggedUserApi(endpoint, queryParams, getState().loggedUser.jwtToken)
-      .then(json => dispatch(setLoggedUserFetched(json)));
+    await callGetApi(endpoint, queryParams, getState().loggedUser.jwtToken)
+      .then(json => dispatch(setLoggedUserFetched(json)))
+      .catch(error => {
+        dispatch(logOutUserOrError());
+        alert("Niemozna pobrać danych użytkownika. \n" + error);
+      });
   }
 }
 
 export const loginToApplication = (user, password) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     await dispatch(fetchJwtToken(user, password));
-    await dispatch(fetchUserData(user));
+    if (getState().loggedUser.isBeingAuthenticated) {
+      await dispatch(fetchUserData(user));
+    }
   } 
 } 

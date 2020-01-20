@@ -83,7 +83,6 @@ function UserMenuBox() {
 
 function MenuElement(props) {
   const styles = useStyles();
-  console.log("==> role index " + props.roles.indexOf(props.userRole) + " userRole: " + props.userRole);
   const isRendered = (props.roles && props.roles.indexOf(props.userRole) > -1) ? true : false;
     return(
       <NavLink exact to={props.path} className={styles.inactiveButton} activeClassName={styles.activeButton}>

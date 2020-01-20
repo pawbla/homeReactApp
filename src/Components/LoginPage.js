@@ -9,8 +9,8 @@ function LoginPage (props) {
     const [values, setText] = useState({});
     
     useEffect(() => {
-        console.log("=======> effect " + props.isAuthenticated);
         if(props.isAuthenticated) {
+            alert("Użytkownik został zalogowany.");
             props.history.push('/index');
         }
       }, [props.isAuthenticated]);

@@ -4,6 +4,7 @@ import Home from './Home';
 import Weather from './Components/Weather';
 import ExtendedRouter from './Components/ExtendedRouter';
 import {roles} from './constants/constants';
+import NotFound from "./Components/NotFound";
 
 export default function Routes() {
     return(
@@ -11,7 +12,7 @@ export default function Routes() {
             <Switch>
                 <ExtendedRouter exact path="/index" roles={roles.USER} component={Home}/>
                 <ExtendedRouter exact path="/weather" roles={roles.USER} component={Weather} />
-                <ExtendedRouter path="/" roles={roles.USER} />
+                <ExtendedRouter path="/" roles={roles.USER} component={NotFound}/>
             </Switch>
         </div>
     );
