@@ -104,7 +104,7 @@ function WeatherRender(props) {
     ];
 
     const uvIndex = [
-      {name: "UV Index", element: "uvIndexValue", data: (props.datas.weather)}, 
+      {name: "UV Index", element: "uvIndexValue", color: "uvIndexColor", data: (props.datas.weather)}, 
       {name: "Opis", element: "uvIndexDescr", data: (props.datas.weather)}
     ];
 
