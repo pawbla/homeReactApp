@@ -15,8 +15,6 @@ export const callGetJwtTokenApi = (user, password) => {
     })
     .then(response => {
         if (!response.ok) {
-          console.log("Response: " + JSON.stringify(response));
-          console.log("Response 2: " + response.status + " aaa " + response.statusText);
           throw new Error(`Received response code: ${response.status} ${response.statusText}`);
         }
         return response.json()          

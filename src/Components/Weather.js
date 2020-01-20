@@ -1,24 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import WeatherRender from './WeatherRender';
 import { connect } from "react-redux";
-import { constants } from '../constants/constants';
-
-const endpoint = 'weather';
+import {callGetApi} from '../libs/callRestApi';
 
 function Weather(props) {
  
   const [datas, setDatas] = useState(null);
+  const endpoint = 'weather';
 
   useEffect(() => {
-    fetch(`${constants.baseUrl}${endpoint}`, {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': 'Bearer ' + props.jwtToken,
-      }
-    })
-      .then(res => res.json())
-      .then(json => setDatas(json));
+    
+    callGetApi(endpoint, "", props.jwtToken)
+      .then(json => setDatas(json))
+      .catch(error => alert("Nie można pobrać danych ze strony. \n" + error));
   }, []);
 
   return (
@@ -29,7 +23,6 @@ function Weather(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log("weather" + JSON.stringify(state));
   return {
     jwtToken: state.loggedUser.jwtToken,
   }

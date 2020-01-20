@@ -1,7 +1,5 @@
 import React from 'react';
 import {makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
-import {NavLink} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
     login: {
@@ -95,13 +93,6 @@ export default function LoginPageRenderer(props) {
                     </input>
                  </div>
             </form>
-            {/* Workaround for missing state after refresg for fix use
-            redux-persist*/}
-            <NavLink exact to="/index">
-            <Button>NavLink</Button>
-
-            
-      </NavLink>
         </div>
     ); 
 }
