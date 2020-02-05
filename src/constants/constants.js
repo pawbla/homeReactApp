@@ -3,6 +3,6 @@ export const constants = {
 };
 
 export const roles = {
-    USER: ["user", "admin"],
-    ADMIN: ["admin"]
+    USER: ["ROLE_USER", "ROLE_ADMIN"],
+    ADMIN: ["ROLE_ADMIN"]
 }
