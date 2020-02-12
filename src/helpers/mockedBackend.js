@@ -25,10 +25,10 @@ export function mockedBackend() {
                 if (url.endsWith('login=admin')) {
                     console.log("== MOCK == Mocked response for fetching user data will provided. Loged as ADMIN. Status: OK");
                     let responeBody = {
-                        login: "userLogin",
-                        firstName: "mockedFirstName",
-                        lastName: "mockedLastName",
-                        role: "admin"
+                        login: "adminLogin",
+                        firstName: "AdminName",
+                        lastName: "LastName",
+                        role: "ROLE_ADMIN"
                     }
                     resolve({ ok: true, json: () => responeBody
                     });
@@ -38,9 +38,9 @@ export function mockedBackend() {
                     console.log("== MOCK == Mocked response for fetching user data will provided. Loged as USER. Status: OK");
                     let responeBody = {
                         login: "userLogin",
-                        firstName: "mockedFirstName",
-                        lastName: "mockedLastName",
-                        role: "user"
+                        firstName: "UserName",
+                        lastName: "LastName",
+                        role: "ROLE_USER"
                     }
                     resolve({ ok: true, json: () => responeBody});     
                 //Mock for revoking access token when logout              

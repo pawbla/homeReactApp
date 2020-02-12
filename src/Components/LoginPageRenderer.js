@@ -1,5 +1,6 @@
 import React from 'react';
-import {makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
+import { LinearProgress } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     login: {
@@ -23,7 +24,10 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center',
     },
     buttons: {
-        marginTop: '25px',
+        marginTop: '10px',
+    }, 
+    progressRoot: {
+        height: '4px'
     },
     loginButton: {
         display: 'inline-block',
@@ -64,35 +68,40 @@ export default function LoginPageRenderer(props) {
     const styles = useStyles();
 
     return(
-        <div className={styles.login}>
-            <h1 className={styles.title}>Home System Service</h1>
-            <form className={styles.form} onSubmit={props.handleLogin}>
-                <div>
-                    <input 
-                        type="text" 
-                        placeholder="Login"
-                        value={props.values.text}
-                        onChange={props.handleChange}
-                        className={styles.textField}>
-                    </input>
-                </div>
-                <div>
-                    <input 
-                        type="password" 
-                        placeholder="Hasło"
-                        value={props.values.password}
-                        onChange={props.handleChange}
-                        className={styles.textField}>
-                    </input>
-                </div>
-                <div className={styles.buttons}>
-                    <input 
-                        type='submit'
-                        value="Login"
-                        className={styles.loginButton}>
-                    </input>
-                 </div>
-            </form>
+        <div>
+            <div className={styles.progressRoot}>
+                {props.showProgress ? <LinearProgress className={styles.progress} /> : <div></div>}
+            </div>
+            <div className={styles.login}>
+                <h1 className={styles.title}>Home System Service</h1>
+                <form className={styles.form} onSubmit={props.handleLogin}>
+                    <div>
+                        <input 
+                            type="text" 
+                            placeholder="Login"
+                            value={props.values.text}
+                            onChange={props.handleChange}
+                            className={styles.textField}>
+                        </input>
+                    </div>
+                    <div>
+                        <input 
+                            type="password" 
+                            placeholder="Hasło"
+                            value={props.values.password}
+                            onChange={props.handleChange}
+                            className={styles.textField}>
+                        </input>
+                    </div>
+                    <div className={styles.buttons}>
+                        <input 
+                            type='submit'
+                            value="Login"
+                            className={styles.loginButton}>
+                        </input>
+                    </div>
+                </form>
+            </div>
         </div>
     ); 
 }

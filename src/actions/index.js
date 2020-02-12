@@ -33,7 +33,7 @@ const fetchUserData = (user) => {
       .then(json => dispatch(setLoggedUserFetched(json)))
       .catch(error => {
         dispatch(logOutUserOrError());
-        alert("Niemozna pobrać danych użytkownika. \n" + error);
+        alert("Nie można pobrać danych użytkownika. \n" + error);
       });
   }
 }

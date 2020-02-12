@@ -3,6 +3,10 @@ export const loggedUser = (state = '', action) => {
       case 'FETCHED_JWT_TOKEN_SUCCESS':
         return {
           ...state,
+          user: "",
+          role: "",
+          firstName: "",
+          lastName: "",
           jwtToken: action.authResp.access_token,
           isAuthenticated: false,
           isBeingAuthenticated: true
@@ -13,6 +17,8 @@ export const loggedUser = (state = '', action) => {
             isAuthenticated: true,
             user: action.user.login,
             role: action.user.role,
+            firstName: action.user.firstName,
+            lastName: action.user.lastName,
             isBeingAuthenticated: false
         }
       case 'LOG_OUT_USER_OR_ERROR':
@@ -22,7 +28,9 @@ export const loggedUser = (state = '', action) => {
             isAuthenticated: false,
             isBeingAuthenticated: false,
             user: "",
-            role: ""
+            role: "",
+            firstName: "",
+            lastName: ""
           }
       default:
         return state
