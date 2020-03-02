@@ -22,6 +22,10 @@ function LoginPage (props) {
         setText(values);
     }
 
+    function handleRegister(event) {
+        props.history.push('/register'); 
+    }
+
     async function handleLogin(event) {
         setProgress(true);
         event.preventDefault();
@@ -34,6 +38,7 @@ function LoginPage (props) {
             <LoginPageRenderer 
                 handleLogin={handleLogin}
                 handleChange={handleChange}
+                handleRegister={handleRegister}
                 values={values}
                 showProgress={progress}
             />

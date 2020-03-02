@@ -3,8 +3,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import { LinearProgress } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-    login: {
-        margin: '80px auto',
+    box: {  
         [`${theme.breakpoints.down('400')} and (orientation: portrait)`]: {
             margin: '30px',
         },
@@ -16,6 +15,14 @@ const useStyles = makeStyles(theme => ({
         padding: '5px 20px 30px 20px',
         opacity: '0.85',
     },
+    login: {
+        margin: '80px auto 40px auto',
+    },
+    register: {
+        margin: '20px auto',
+        textAlign: 'center',
+        padding: '10px 20px 10px 20px',
+    },
     title: {
         color: '#f8f8ff',
         textAlign: 'center',
@@ -26,10 +33,24 @@ const useStyles = makeStyles(theme => ({
     buttons: {
         marginTop: '10px',
     }, 
+    textField: {
+        border: '2px solid #056DF5',
+        width: '80%',
+        fontSize: '20px',
+        padding: '4px 7px',
+        marginTop: '10px',
+        borderRadius: '6px',
+        outline: 'none',
+        background: '#f8f8ff',
+        '&:focus': {
+            boxShadow: '0 0 13px gray'
+        }
+    },
     progressRoot: {
         height: '4px'
     },
     loginButton: {
+        marginTop: '10px',
         display: 'inline-block',
         width: '84%',
         height: '35px',
@@ -47,19 +68,6 @@ const useStyles = makeStyles(theme => ({
             color: '#F0F8FF',
             boxShadow: '0 0 15px gray',
         },   
-    }, 
-    textField: {
-        border: '2px solid #056DF5',
-        width: '80%',
-        fontSize: '20px',
-        padding: '4px 7px',
-        marginTop: '10px',
-        borderRadius: '6px',
-        outline: 'none',
-        background: '#f8f8ff',
-        '&:focus': {
-            boxShadow: '0 0 13px gray'
-        }
     }
 }));
 
@@ -72,7 +80,7 @@ export default function LoginPageRenderer(props) {
             <div className={styles.progressRoot}>
                 {props.showProgress ? <LinearProgress className={styles.progress} /> : <div></div>}
             </div>
-            <div className={styles.login}>
+            <div className={`${styles.box} ${styles.login}`}>
                 <h1 className={styles.title}>Home System Service</h1>
                 <form className={styles.form} onSubmit={props.handleLogin}>
                     <div>
@@ -101,6 +109,9 @@ export default function LoginPageRenderer(props) {
                         </input>
                     </div>
                 </form>
+            </div>
+            <div className={`${styles.box} ${styles.register}`} onClick={props.handleRegister}>
+                <button className={styles.loginButton}>Zarejestruj użytkownika</button>
             </div>
         </div>
     ); 
