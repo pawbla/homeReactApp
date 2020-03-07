@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 
 function LoginPage (props) {
+
+    const initState = {text: "", password: ""}
     
-    const [values, setText] = useState({});
+    const [values, setText] = useState(initState);
     const [progress, setProgress] = useState(false);
     
     useEffect(() => {
@@ -16,20 +18,20 @@ function LoginPage (props) {
         }
       }, [props.isAuthenticated]);
 
-    function handleChange(event) {
+    const handleChange = (event) => {
         event.preventDefault();
-        values[event.target.type] = event.target.value;
-        setText(values);
+        setText({...values, [event.target.type]: event.target.value});
     }
 
-    function handleRegister(event) {
+    const handleRegister = (event) => {
         props.history.push('/register'); 
     }
 
-    async function handleLogin(event) {
+    const handleLogin = async (event) => {
         setProgress(true);
         event.preventDefault();
-        await props.loginToApplication(values.text, values.password);        
+        await props.loginToApplication(values.text, values.password);   
+        setText(initState);     
         setProgress(false);
     }
 

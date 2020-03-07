@@ -38,8 +38,8 @@ function Register(props) {
     const [progress, setProgress] = useState(false);
 
     const onChange = (event) => {
-        values[event.target.name] = event.target.value;
-        setText(values);
+        event.preventDefault();
+        setText({...values, [event.target.name]: event.target.value});
     }
 
     const onSubmit = async (event) => {
