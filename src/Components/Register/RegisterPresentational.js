@@ -72,41 +72,24 @@ function RegisterPresentational(props) {
     return  (
         <div>
             <div className={styles.progress}>
-                {false ? <LinearProgress className={styles.progress} /> : <div></div>}
+                {props.showProgress ? <LinearProgress className={styles.progress} /> : <div></div>}
             </div>                
             <div className={styles.main}>
                 <h1 className={styles.title}>Dodaj użytkownika</h1>
-                <form className={styles.form}>
-                    <div className={styles.textField}>
-                        <input
-                            type="text" 
-                            placeholder="Login" >
-                        </input>
-                    </div>
-                    <div className={styles.textField}>
-                        <input
-                            type="password" 
-                            placeholder="Hasło">
-                        </input>
-                    </div>
-                    <div className={styles.textField}>
-                        <input
-                            type="text" 
-                            placeholder="Imię">
-                        </input>
-                    </div>
-                    <div className={styles.textField}>
-                        <input
-                            type="text" 
-                            placeholder="Nazwisko">
-                        </input>
-                    </div>
-                    <div className={styles.textField}>
-                        <input
-                            type="text" 
-                            placeholder="email">
-                        </input>
-                    </div>
+                <form className={styles.form} onSubmit={props.onSubmit}>
+                    {
+                        props.fields.map((field, index) => (
+                            <div className={styles.textField} key={index}>
+                                <input
+                                    type={field.type} 
+                                    placeholder={field.placeholder} 
+                                    name={field.name}
+                                    value={props.value[field.name]}
+                                    onChange={event=> props.onChange(event)}>
+                                </input>
+                            </div>
+                        ))
+                    }
                     <div className={styles.button}>
                         <input 
                             type='submit'

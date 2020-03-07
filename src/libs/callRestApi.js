@@ -37,3 +37,21 @@ export const callGetApi = (endpoint, queryParams, token) => {
         return response.json()          
     })
 }
+
+export const callPostApi = (endpoint, body, token) => {
+  const url = `${apiUrl}${endpoint}`;
+  return fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + token,
+      },
+      body: body
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+      }
+      return response.json()          
+  })
+}

@@ -1,4 +1,4 @@
-import {callGetApi, callGetJwtTokenApi} from '../libs/callRestApi';
+import {callGetApi, callPostApi, callGetJwtTokenApi} from '../libs/callRestApi';
 
 const setJwtTokenFetched = (authResp) => ({
   type: 'FETCHED_JWT_TOKEN_SUCCESS',
@@ -46,3 +46,25 @@ export const loginToApplication = (user, password) => {
     }
   } 
 } 
+
+export const registerUser = (aUserName, aPassword, aFirstName, aLastName, aEmail) => {
+  
+  const body = {
+    userName: aUserName,
+    password: aPassword,
+    firstName: aFirstName, 
+    lastName: aLastName, 
+    email: aEmail
+  }
+
+  return async (dispatch, getState) => {
+    const endpoint = 'setuser';
+
+    await callPostApi(endpoint, body, getState().loggedUser.jwtToken)
+      .then(() => alert("Nie można pobrać danych użytkownika."))
+      .catch(error => {
+        dispatch(logOutUserOrError());
+        alert("Nie można pobrać danych użytkownika. \n" + error);
+      });
+  }
+}

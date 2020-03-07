@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 
 function LoginPage (props) {
-
+    
     const [values, setText] = useState({});
     const [progress, setProgress] = useState(false);
     
@@ -29,7 +29,7 @@ function LoginPage (props) {
     async function handleLogin(event) {
         setProgress(true);
         event.preventDefault();
-        await props.loginToApplication(values.text, values.password); 
+        await props.loginToApplication(values.text, values.password);        
         setProgress(false);
     }
 
