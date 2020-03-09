@@ -61,10 +61,10 @@ export const registerUser = (aUserName, aPassword, aFirstName, aLastName, aEmail
     const endpoint = 'setuser';
 
     await callPostApi(endpoint, body, getState().loggedUser.jwtToken)
-      .then(() => alert("Nie można pobrać danych użytkownika."))
+      .then()
       .catch(error => {
         dispatch(logOutUserOrError());
-        alert("Nie można pobrać danych użytkownika. \n" + error);
+        alert("Nie można zapisać danych użytkownika. \n" + error);
       });
   }
 }

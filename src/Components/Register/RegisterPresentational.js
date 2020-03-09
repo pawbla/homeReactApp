@@ -79,8 +79,9 @@ function RegisterPresentational(props) {
                 <form className={styles.form} onSubmit={props.onSubmit}>
                     {
                         props.fields.map((field, index) => (
-                            <div className={styles.textField} key={index}>
+                            <div className={styles.textField} key={index} >
                                 <input
+                                    style={{borderColor: props.errors[field.name] ? 'red' : styles.textField.border}}
                                     type={field.type} 
                                     placeholder={field.placeholder} 
                                     name={field.name}
