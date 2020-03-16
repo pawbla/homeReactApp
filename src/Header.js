@@ -102,22 +102,22 @@ function MobileMenu() {
   return(
     <div>
        <IconButton
-              edge="start"
-              color="inherit"
-              aria-expanded="true"
-              aria-controls="mobileMenu" 
-              aria-haspopup="true"
-              onClick={handleClick}>
-              <MenuIcon />
-            </IconButton>
-            <Popover
-              id="mobileMenu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}>              
-              <Nav onClick={handleClose}/>
-            </Popover>
+        edge="start"
+        color="inherit"
+        aria-expanded="true"
+        aria-controls="mobileMenu" 
+        aria-haspopup="true"
+        onClick={handleClick}>
+        <MenuIcon />
+      </IconButton>
+      <Popover
+        id="mobileMenu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}>              
+        <Nav onClick={handleClose}/>
+      </Popover>
     </div>
   );
 }
