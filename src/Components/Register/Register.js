@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import RegisterPresentational from './RegisterPresentational';
 import {registerUser} from '../../actions/';
 import { connect } from 'react-redux';
