@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
     'leaveActive': {
         transformOrigin: 'top',
         transform: 'scaleY(0)',
-        transition: 'all .5s ease'
+        transition: 'all .3s ease'
     }
 }));
 
@@ -138,29 +138,33 @@ function UsersList(props) {
 
     const styles = useStyles();
 
-    const [isOpened, setOpenClose] = useState(false);
+    const [isOpened, setOpenClose] = useState({});
 
-    const openClose = () => {
-       setOpenClose(!isOpened);
+    const openClose = (item) => {
+        console.log("aaa" + item)
+        if (isOpened == item) {
+            setOpenClose({});
+        } else {
+            setOpenClose(item);
+        }
+
     }
-//{true ? <UserDescription isOpened={isOpened}/> : null}
     return (
         <ul className={styles.p_ul}>
             {props.users.map((item, index) => (
             <li key={index}>
                 <UserItem item={item} 
-                          index={index}
                           onClick={openClose}/>
                 <ReactCSSTransitionGroup
-                    transitionName={ {
+                    transitionName={{
                         enter: styles.enter,
                         enterActive: styles.enterActive,
                         leave: styles.leave,
-                        leaveActive: styles.leaveActive,
-                      } }
+                        leaveActive: styles.leaveActive
+                    }}
                     transitionAppear={true} 
                     transitionAppearTimeout={500}>
-                    {isOpened && <UserDescription/>}
+                    {isOpened == item.username && <UserDescription item={item} />}
                 </ReactCSSTransitionGroup>
             </li>))}
         </ul>  
@@ -172,7 +176,7 @@ function UserItem(props) {
     const styles = useStyles();
 
     return (
-        <div className={[props.item.enabled ? styles.itemEnabled : styles.itemDisabled, styles.userItem].join(' ')} onClick={props.onClick}>
+        <div className={[props.item.enabled ? styles.itemEnabled : styles.itemDisabled, styles.userItem].join(' ')} onClick={() => props.onClick(props.item.username)}>
             <div >
                 <h2>{props.item.username}</h2>
                 <p>{props.item.firstName} {props.item.lastName}</p>
@@ -190,16 +194,12 @@ function UserItem(props) {
     )
 }
 
-function UserDesc(props) {
-    
-}
-
 function UserDescription(props) {
 
     const styles = useStyles();
 
     return (
-        <div className={styles.userDescription}>
+        <div className={styles.userDescription} style={{borderColor: props.item.enabled ? styles.userDescription.border : '#4A4949'}}>
             <span>lkajfdhaksdjfhasdkjlfh klsdjfh {props.index}</span>
         </div>
     )
