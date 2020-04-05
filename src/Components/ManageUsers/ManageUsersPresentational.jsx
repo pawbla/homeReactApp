@@ -3,6 +3,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import DeleteRoundedIcon from '@material-ui/icons/DeleteRounded';
 import {IconButton} from '@material-ui/core';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { LinearProgress } from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme => ({
@@ -81,46 +82,20 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-
-//REMOVE BELOW MOCK AFTER DEVELOPMENT
-const mock =  [
-    {
-        username: "user1",
-        enabled: true,
-        firstName: "enabledFirst",
-        lastName: "enabledLast"
-    },
-    {
-        username: "user2",
-        enabled: false,
-        firstName: "disabledFirst",
-        lastName: "disbledLast"
-    },
-    {
-        username: "user3",
-        enabled: false,
-        firstName: "disabledFirst",
-        lastName: "disbledLast"
-    },
-    {
-        username: "user4",
-        enabled: true,
-        firstName: "disabledFirst",
-        lastName: "disbledLast"
-    }
-]
-
 function ManageUsersPresentational(props) {
 
     const styles = useStyles();
 
     return(
         <div>
+            <div className={styles.progress}>
+                {props.showProgress ? <LinearProgress className={styles.progress} /> : <div></div>}
+            </div>  
             <div className={styles.p_header}>
                 <h2>Użytkownicy</h2>
             </div> 
             <div className={styles.p_table}>
-                <UsersList users={mock} />
+                {props.users ? <UsersList users={props.users} onDelete={props.onDelete} /> : <div></div>}
             </div> 
         </div>
     );
@@ -133,8 +108,7 @@ function UsersList(props) {
     const [isOpened, setOpenClose] = useState({});
 
     const openClose = (item) => {
-        console.log("aaa" + item)
-        if (isOpened == item) {
+        if (isOpened === item) {
             setOpenClose({});
         } else {
             setOpenClose(item);
@@ -143,10 +117,12 @@ function UsersList(props) {
     }
     return (
         <ul className={styles.p_ul}>
-            {props.users.map((item, index) => (
+            {console.log("TEST " + JSON.stringify(props.users))}
+            {props.users.users.map((item, index) => (
             <li key={index}>
-                <UserItem item={item} 
-                          onClick={openClose}/>
+               <UserItem item={item} 
+                        onClick={openClose}
+                        onDelete={props.onDelete}/>
                 <ReactCSSTransitionGroup
                     transitionName={{
                         enter: styles.enter,
@@ -155,8 +131,10 @@ function UsersList(props) {
                         leaveActive: styles.leaveActive
                     }}
                     transitionAppear={true} 
-                    transitionAppearTimeout={500}>
-                    {isOpened == item.username && <UserDescription item={item} />}
+                    transitionAppearTimeout={500}
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}>
+                    {isOpened === item.username && <UserDescription item={item} />}
                 </ReactCSSTransitionGroup>
             </li>))}
         </ul>  
@@ -166,7 +144,7 @@ function UsersList(props) {
 function UserItem(props) {
 
     const styles = useStyles();
-
+    console.log("Propsy: " + JSON.stringify(props))
     return (
         <div className={[props.item.enabled ? styles.itemEnabled : styles.itemDisabled, styles.userItem].join(' ')} onClick={() => props.onClick(props.item.username)}>
             <div >
@@ -178,7 +156,7 @@ function UserItem(props) {
                     color="inherit"
                     className={styles.deleteIcon}
                     size="small"
-                    onClick={(e) => {e.stopPropagation(); console.log("Pressed Delete" + props.isOpened)}}>
+                    onClick={(e) => {e.stopPropagation(); props.onDelete(e)}}>
                         <DeleteRoundedIcon fontSize="large"/>
                 </IconButton>
             </div>
@@ -257,7 +235,6 @@ const userDescStyles = makeStyles(theme => ({
         }
     },
     checkboxField: {
-        display: 'inline',
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -300,7 +277,8 @@ function UserDescription(props) {
     }
 
     return (
-        <div className={styles.userDescription} style={{borderColor: disabledColor(styles.userDescription)}}>
+        <div className={styles.userDescription} 
+                style={{borderColor: disabledColor(styles.userDescription)}}>
             <form>
                 <div>
                     <div className={styles.textField}>

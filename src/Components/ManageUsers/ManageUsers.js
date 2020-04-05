@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ManageUsersPresentational from './ManageUsersPresentational'; 
+import { connect } from "react-redux";
+import {callGetApi} from '../../libs/callRestApi';
 
-function ManageUsers() {
+const bStateInit = {
+
+}
+
+const usersEndpoint = 'users';
+
+
+function ManageUsers(props) {
+
+    const [users, setUsers] = useState(null);
+
+    useEffect(() => {
+        callGetApi(usersEndpoint, "", props.jwtToken)
+        .then(json => setUsers(json))
+        .catch(error => alert("Nie można pobrać danych ze strony. \n" + error));
+    }, []);
+
+    const onDelete = (event) => {
+        console.log("On delete");
+    }
+
     return (
         <div>
-            <ManageUsersPresentational />
+            <ManageUsersPresentational users={users} onDelete={onDelete}/>
         </div>
     );
 }
 
-export default ManageUsers;
+const mapStateToProps = (state) => {
+    return {
+      jwtToken: state.loggedUser.jwtToken,
+    }
+};
+  
+export default connect(mapStateToProps)(ManageUsers);
