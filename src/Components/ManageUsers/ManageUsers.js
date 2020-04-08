@@ -13,6 +13,7 @@ const usersEndpoint = 'users';
 function ManageUsers(props) {
 
     const [users, setUsers] = useState(null);
+    const [values, setValues] = useState();
 
     useEffect(() => {
         callGetApi(usersEndpoint, "", props.jwtToken)
@@ -20,13 +21,20 @@ function ManageUsers(props) {
         .catch(error => alert("Nie można pobrać danych ze strony. \n" + error));
     }, []);
 
+    //example HTTP DELETE http://www.appdomain.com/users/123
     const onDelete = (event) => {
         console.log("On delete");
     }
 
+    const onOpenItem = (event) => {
+
+    }
+
     return (
         <div>
-            <ManageUsersPresentational users={users} onDelete={onDelete}/>
+            <ManageUsersPresentational users={users} 
+                onDelete={onDelete}
+                onOpenItem={onOpenItem}/>
         </div>
     );
 }
