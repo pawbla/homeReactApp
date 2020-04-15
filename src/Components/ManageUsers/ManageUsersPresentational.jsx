@@ -1,6 +1,5 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
-import { LinearProgress } from '@material-ui/core';
 
 import UsersList from './UsersList';
 
@@ -23,9 +22,6 @@ function ManageUsersPresentational(props) {
 
     return(
         <div>
-            <div className={styles.progress}>
-                {props.showProgress ? <LinearProgress className={styles.progress} /> : <div></div>}
-            </div>  
             <div className={styles.p_header}>
                 <h2>Użytkownicy</h2>
             </div> 

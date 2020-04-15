@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import { LinearProgress } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     main: {
@@ -60,9 +61,6 @@ const useStyles = makeStyles(theme => ({
             }
         } 
     },
-    progress: {
-        height: '4px'
-    },
 }));
 
 function RegisterPresentational(props) {
@@ -70,10 +68,10 @@ function RegisterPresentational(props) {
     const styles = useStyles();
 
     return  (
-        <div>
-            <div className={styles.progress}>
-                {props.showProgress ? <LinearProgress className={styles.progress} /> : <div></div>}
-            </div>                
+        <div>     
+            <div className={styles.progressRoot}>
+                {props.isProgress ? <LinearProgress /> : <div></div>}
+            </div>          
             <div className={styles.main}>
                 <h1 className={styles.title}>Dodaj użytkownika</h1>
                 <form className={styles.form} onSubmit={props.onSubmit}>
@@ -103,4 +101,11 @@ function RegisterPresentational(props) {
     );
 }
 
-export default RegisterPresentational;
+
+const mapStateToProps = (state) => {
+    return {
+        isProgress: state.isProgressBar
+    }
+  };
+  
+  export default connect(mapStateToProps)(RegisterPresentational);

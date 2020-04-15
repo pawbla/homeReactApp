@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import { loggedUser } from "./logginReducer";
+import { loggedUser, isProgressBar, fetchedData } from "./logginReducer";
 
 export default combineReducers({
-    loggedUser
+    loggedUser,
+    isProgressBar,
+    fetchedData
 });

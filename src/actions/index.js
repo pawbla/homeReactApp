@@ -14,6 +14,20 @@ export const logOutUserOrError = () => ({
   type: 'LOG_OUT_USER_OR_ERROR'
 });
 
+export const enableProgressBar = () => ({
+  type: 'ENABLE_PROGRESS_BAR'
+});
+
+export const disableProgressBar = () => ({
+  type: 'DISABLE_PROGRESS_BAR'
+});
+
+export const setFetchedData = (payload, id) => ({
+  type: 'UPDATE_FETCHED_DATA',
+  payload,
+  id
+});
+
 const fetchJwtToken = (user, password) => {
   return async (dispatch) => {
     await callGetJwtTokenApi(user, password)
@@ -59,12 +73,39 @@ export const registerUser = (aUserName, aPassword, aFirstName, aLastName, aEmail
 
   return async (dispatch, getState) => {
     const endpoint = 'setuser';
-
+    dispatch(enableProgressBar());
     await callPostApi(endpoint, body, getState().loggedUser.jwtToken)
       .then()
       .catch(error => {
         dispatch(logOutUserOrError());
         alert("Nie można zapisać danych użytkownika. \n" + error);
       });
+    dispatch(disableProgressBar());
   }
+}
+
+export const callGET = (endpoint, query, errorMessage) => {
+
+  return async (dispatch, getState) => {
+    dispatch(enableProgressBar());
+    await callGetApi(endpoint, query, getState().loggedUser.jwtToken)
+      .then(json =>
+        dispatch(setFetchedData(json, endpoint)))
+      .catch(error => 
+        alert(`${errorMessage} \n ${error}`));
+    dispatch(disableProgressBar());
+  } 
+}
+
+export const callPOST = (endpoint, body, errorMessage) => {
+
+  return async (dispatch, getState) => {
+    dispatch(enableProgressBar());
+    await callPostApi(endpoint, body, getState().loggedUser.jwtToken)
+      .then()
+      .catch(error => {
+        alert(`${errorMessage} \n ${error}`);
+      });
+    dispatch(disableProgressBar());
+  } 
 }

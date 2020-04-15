@@ -43,7 +43,6 @@ function Register(props) {
 
     const [values, setText] = useState({login: "", password: "", fName: "", lName: "", email: ""});
     const [errors, setError] = useState({});
-    const [progress, setProgress] = useState(false);
 
     const validateField = () => {
         let errorObj = {};
@@ -66,7 +65,6 @@ function Register(props) {
     }
 
     const onSubmit = async (event) => {
-        setProgress(true);
         
         event.preventDefault();
         if (validateField()) {
@@ -74,7 +72,6 @@ function Register(props) {
         } else {
             await props.registerUser(values);  
         }
-        setProgress(false);
     }
 
     return  (
@@ -84,8 +81,7 @@ function Register(props) {
                 fields={fields} 
                 value={values}
                 onChange={onChange}
-                onSubmit={onSubmit}
-                showProgress={progress}/>
+                onSubmit={onSubmit}/>
         </div>
     );
 }

@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect} from 'react';
 import WeatherRender from './WeatherRender';
 import { connect } from "react-redux";
-import {callGetApi} from '../libs/callRestApi';
+import {callGET} from '../actions/';
 
 function Weather(props) {
  
-  const [datas, setDatas] = useState(null);
   const endpoint = 'weather';
+  const errorMsg = "Nie można pobrać danych ze strony.";
+
+  let isFetched = false;
 
   useEffect(() => {
-    
-    callGetApi(endpoint, "", props.jwtToken)
-      .then(json => setDatas(json))
-      .catch(error => alert("Nie można pobrać danych ze strony. \n" + error));
+     props.callGET(endpoint, "", errorMsg);
   }, []);
 
   return (
     <div>
-      {datas ? (<WeatherRender datas={datas} />) : (<div></div>)}
+      {props.reqId === endpoint ? (<WeatherRender datas={props.datas} />) : (<div></div>)}
     </div>
   );
 }
 
 const mapStateToProps = (state) => {
   return {
-    jwtToken: state.loggedUser.jwtToken,
+    datas: state.fetchedData.payload,
+    reqId: state.fetchedData.id
   }
 };
 
-export default connect(mapStateToProps)(Weather);
+const mapDispatchToProps = {callGET};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Weather);

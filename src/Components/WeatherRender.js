@@ -1,5 +1,6 @@
 import React from 'react';
 import {makeStyles } from '@material-ui/core/styles';
+
 import pic1  from '../assets/weatherIcons/01.png';
 import pic2  from '../assets/weatherIcons/02.png';
 import pic3  from '../assets/weatherIcons/03.png';
@@ -115,14 +116,17 @@ function WeatherRender(props) {
       ];
 
   return (
-    <div className={styles.page}>
-      <WeatherComponent title="Wewnątrz" rows={tempHumIn}/>
-      <WeatherComponent title="Na zewnątrz" rows={tempHumOut}/>
-      <WeatherComponent title="Index UV" rows={uvIndex}/>
-      <WeatherComponent title="Pogoda" rows={weather}/>
-      <WeatherComponent title="Zanieczyszczenie powietrza" rows={airCondition}/>
-      <WeatherComponent title="Dzień" rows={dayLength}/>
+    <div>
+      <div className={styles.page}>
+        <WeatherComponent title="Wewnątrz" rows={tempHumIn}/>
+        <WeatherComponent title="Na zewnątrz" rows={tempHumOut}/>
+        <WeatherComponent title="Index UV" rows={uvIndex}/>
+        <WeatherComponent title="Pogoda" rows={weather}/>
+        <WeatherComponent title="Zanieczyszczenie powietrza" rows={airCondition}/>
+        <WeatherComponent title="Dzień" rows={dayLength}/>
+      </div>
     </div>
+
   )
 }
 

@@ -9,7 +9,6 @@ function LoginPage (props) {
     const initState = {text: "", password: ""}
     
     const [values, setText] = useState(initState);
-    const [progress, setProgress] = useState(false);
     
     useEffect(() => {
         if(props.isAuthenticated) {
@@ -28,11 +27,9 @@ function LoginPage (props) {
     }
 
     const handleLogin = async (event) => {
-        setProgress(true);
         event.preventDefault();
         await props.loginToApplication(values.text, values.password);   
         setText(initState);     
-        setProgress(false);
     }
 
     return(
@@ -42,7 +39,6 @@ function LoginPage (props) {
                 handleChange={handleChange}
                 handleRegister={handleRegister}
                 values={values}
-                showProgress={progress}
             />
         </div>
     ); 

@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import ManageUsersPresentational from './ManageUsersPresentational'; 
 import { connect } from "react-redux";
-import {callGetApi} from '../../libs/callRestApi';
+import {callGET} from '../../actions/';
 
 const bStateInit = {
 
 }
 
 const usersEndpoint = 'users';
+const errorMsg = "Nie można pobrać danych ze strony.";
 
 
 function ManageUsers(props) {
 
-    const [users, setUsers] = useState(null);
-    const [values, setValues] = useState();
-
     useEffect(() => {
-        callGetApi(usersEndpoint, "", props.jwtToken)
-        .then(json => setUsers(json))
-        .catch(error => alert("Nie można pobrać danych ze strony. \n" + error));
-    }, []);
+        props.callGET(usersEndpoint, "", errorMsg)
+     }, []);
 
     //example HTTP DELETE http://www.appdomain.com/users/123
     const onDelete = (event) => {
@@ -32,17 +28,23 @@ function ManageUsers(props) {
 
     return (
         <div>
-            <ManageUsersPresentational users={users} 
+            {props.reqId === usersEndpoint ?  
+            <ManageUsersPresentational users={props.datas} 
                 onDelete={onDelete}
                 onOpenItem={onOpenItem}/>
+                : (<div></div>)}
         </div>
     );
 }
 
+
 const mapStateToProps = (state) => {
     return {
-      jwtToken: state.loggedUser.jwtToken,
+      datas: state.fetchedData.payload,
+      reqId: state.fetchedData.id
     }
-};
+  };
   
-export default connect(mapStateToProps)(ManageUsers);
+const mapDispatchToProps = {callGET};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers);

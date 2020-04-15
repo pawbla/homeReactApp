@@ -10,7 +10,9 @@ import {makeStyles } from '@material-ui/core/styles';
 import {Nav} from './Nav';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Popover from '@material-ui/core/Popover';
-import UserMenu from './Components/menu/UserMenu'
+import UserMenu from './Components/menu/UserMenu';
+import { LinearProgress } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   space: {
@@ -59,33 +61,48 @@ const useStyles = makeStyles(theme => ({
   mobileRightMenu: {
     backgroundColor: '#05A8F5',
     color: '#f8f8ff', 
-  }
+  },
+  progressRoot: {
+    position: 'absolute',
+    top: '50px',
+    left: '0',
+    width: '100%',
+    height: '4px',
+    zIndex: '10'
+},
 }));
 
-function Header() {
+function Header(props) {
   const styles = useStyles();
 
   return(
-    <div className={styles.space}>
-      <AppBar className={styles.appBar} position="static">
-        <Toolbar>
-          <div className={styles.mobile}>
-            <MobileMenu />
+    <div>
+      <div className={styles.space}>
+        <AppBar className={styles.appBar} position="static">
+          <Toolbar>
+            <div className={styles.mobile}>
+              <MobileMenu />
+            </div>
+            <Typography variant="h5" noWrap className={styles.title}>
+              Home System Service
+            </Typography>
+            <div className={styles.space} />
+            <div className={styles.desktop}>
+              <Notifications />
+              <UserMenu />
+            </div>
+            <div className={styles.mobile}>
+              <MobileRightMenu />
+            </div>
+          </Toolbar>
+          <div className={styles.progressRoot}>
+            {props.isProgress ? <LinearProgress /> : <div></div>}
           </div>
-          <Typography variant="h5" noWrap className={styles.title}>
-            Home System Service
-          </Typography>
-          <div className={styles.space} />
-          <div className={styles.desktop}>
-            <Notifications />
-            <UserMenu />
-          </div>
-          <div className={styles.mobile}>
-            <MobileRightMenu />
-          </div>
-        </Toolbar>
-      </AppBar>
+        </AppBar>
+      </div>
+
     </div>
+
   );
 }
 
@@ -174,4 +191,10 @@ function Notifications() {
   )
 }
 
- export default Header;
+const mapStateToProps = (state) => {
+  return {
+      isProgress: state.isProgressBar
+  }
+};
+
+export default connect(mapStateToProps)(Header);

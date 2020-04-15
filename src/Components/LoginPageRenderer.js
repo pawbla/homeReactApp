@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import { LinearProgress } from '@material-ui/core';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
     box: {  
@@ -71,14 +72,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function LoginPageRenderer(props) {
+function LoginPageRenderer(props) {
 
     const styles = useStyles();
 
     return(
         <div>
             <div className={styles.progressRoot}>
-                {props.showProgress ? <LinearProgress className={styles.progress} /> : <div></div>}
+                {props.isProgress ? <LinearProgress /> : <div></div>}
             </div>
             <div className={`${styles.box} ${styles.login}`}>
                 <h1 className={styles.title}>Home System Service</h1>
@@ -116,3 +117,11 @@ export default function LoginPageRenderer(props) {
         </div>
     ); 
 }
+
+const mapStateToProps = (state) => {
+    return {
+        isProgress: state.isProgressBar
+    }
+  };
+  
+  export default connect(mapStateToProps)(LoginPageRenderer);
