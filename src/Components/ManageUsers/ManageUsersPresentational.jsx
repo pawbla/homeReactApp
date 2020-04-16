@@ -26,8 +26,8 @@ function ManageUsersPresentational(props) {
                 <h2>Użytkownicy</h2>
             </div> 
             <div className={styles.p_table}>
-                {props.users ? <UsersList users={props.users} onDelete={props.onDelete} 
-                    onOpenItem={props.onOpenItem}/> : <div></div>}
+                {props.users ? <UsersList users={props.users} 
+                    onDelete={props.onDelete}/> : <div></div>}
             </div> 
         </div>
     );

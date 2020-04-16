@@ -1,10 +1,11 @@
 export const usersList =  {users: [
     {
-        username: "UserName1",
+        username: "Admin",
         enabled: true,
         firstName: "AFirst",
         lastName: "ALast",
-        role: "ROLE_ADMIN"
+        role: "ROLE_ADMIN",
+        email: "admin@admin.com"
     },
     {
         username: "UserName2",

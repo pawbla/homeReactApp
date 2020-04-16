@@ -68,7 +68,6 @@ export default function UsersList(props) {
                     transitionEnterTimeout={500}
                     transitionLeaveTimeout={500}>
                     {isOpened === item.username && <Description item={item} 
-                                                                onOpenItem={props.onOpenItem}
                                                                 onSubmit={props.onSubmit}
                                                                 onChange={props.onChange}/>}
                 </ReactCSSTransitionGroup>

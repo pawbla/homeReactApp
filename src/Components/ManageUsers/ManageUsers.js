@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
 import ManageUsersPresentational from './ManageUsersPresentational'; 
 import { connect } from "react-redux";
-import {callGET} from '../../actions/';
-
-const bStateInit = {
-
-}
+import {callGET, callDELETE} from '../../actions/';
 
 const usersEndpoint = 'users';
+const deleteEndpoint = 'deleteUser';
+
 const errorMsg = "Nie można pobrać danych ze strony.";
+const deleteErrMsg = "Wystąpił problem podczas usuwania użytkownika";
 
 
 function ManageUsers(props) {
@@ -17,21 +16,15 @@ function ManageUsers(props) {
         props.callGET(usersEndpoint, "", errorMsg)
      }, []);
 
-    //example HTTP DELETE http://www.appdomain.com/users/123
-    const onDelete = (event) => {
-        console.log("On delete");
-    }
-
-    const onOpenItem = (event) => {
-
+    const onDelete = (username) => {
+        props.callDELETE(deleteEndpoint, username, deleteErrMsg);
     }
 
     return (
         <div>
             {props.reqId === usersEndpoint ?  
             <ManageUsersPresentational users={props.datas} 
-                onDelete={onDelete}
-                onOpenItem={onOpenItem}/>
+                onDelete={onDelete}/>
                 : (<div></div>)}
         </div>
     );
@@ -45,6 +38,6 @@ const mapStateToProps = (state) => {
     }
   };
   
-const mapDispatchToProps = {callGET};
+const mapDispatchToProps = {callGET, callDELETE};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers);

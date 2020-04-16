@@ -55,3 +55,38 @@ export const callPostApi = (endpoint, body, token) => {
       return response.json()          
   })
 }
+
+export const callPutApi = (endpoint, param, body, token) => {
+  const url = `${apiUrl}${endpoint}/${param}`;
+  return fetch(url, {
+      method: 'PUT',
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + token,
+      },
+      body: body
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+      }
+      return response.json()          
+  })
+}
+
+export const callDeleteApi = (endpoint, deleteParam, token) => {
+  const url = `${apiUrl}${endpoint}/${deleteParam}`;
+  return fetch(url, {
+      method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + token,
+      },
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+      }
+      return response.json()          
+  })
+}

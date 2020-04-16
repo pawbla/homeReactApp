@@ -139,22 +139,22 @@ export default function DescriptionPresentational(props) {
                                 style={{borderColor: disabledColor(styles.textField)}}>
                         </input>
                     </div>
-                </div>
+        ``        </div>
                 <div className={styles.rightArea}>
                     <div className={styles.selectField}>
                         <select  style={{borderColor: disabledColor(styles.selectField)}}
                             name="role"
                             value={props.value["role"]}
                             onChange={props.onChange}>
-                            <option className={styles.option}>USER</option>
-                            <option>ADMIN</option>
+                            <option className={styles.option}>ROLE_USER</option>
+                            <option>ROLE_ADMIN</option>
                         </select>
                     </div>
                     <div className={styles.checkboxField} onClick={props.toggleCheck}>
                         <label>Aktywny</label>
                         <input type="checkbox" 
-                                checked={props.value["isEnabled"]}
-                                name="isEnabled">
+                                checked={props.value["enabled"]}
+                                name="enabled">
                         </input>
                         <span  style={{borderColor: disabledColor(styles.textField)}}></span>
                     </div>

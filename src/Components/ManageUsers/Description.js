@@ -1,22 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import DescriptionPresentational from './DescriptionPresentational';
+import { connect } from "react-redux";
+import {callPUT} from '../../actions/';
 
-export default function Description(props) {
+const updateEndpoint = 'updateUser';
+const errorMessage = "Problem podczas aktualizacji danych.";
 
-    const [values, setValues] = useState({firstName: "", lastName: "", email: "", isEnabled: false, role: "USER"});
+function Description(props) {
 
-    const onSubmit = () => {
-        console.log("on submit");
+    const [values, setValues] = useState({firstName: "", lastName: "", email: "", enabled: true, role: ""});
+
+    const onSubmit = (event) => {
+        event.preventDefault();
+        props.callPUT(updateEndpoint, values.username ,values ,errorMessage);
     }
 
+    useEffect(() => {
+        setValues(props.item);
+     }, []);
+
     const onChange = (event) => {
-        console.log("On change");
-        console.log(" Name: " + event.target.name);
         setValues({...values, [event.target.name]: event.target.value});
     }
 
     const toggleCheck = () => {
-        setValues({...values, ["isEnabled"]: !values.isEnabled})
+        setValues({...values, ["enabled"]: !values.enabled})
     }
 
     return (
@@ -29,3 +37,7 @@ export default function Description(props) {
         </div>
     )
 }
+
+const mapDispatchToProps = {callPUT};
+
+export default connect(null, mapDispatchToProps)(Description);

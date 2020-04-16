@@ -1,5 +1,5 @@
 import {userAdmin, userUser} from '../Mocks/loginMocks'; 
-import { usersList } from '../Mocks/manageUsersMock';
+import { usersList} from '../Mocks/manageUsersMock';
 import {weatherResp} from '../Mocks/weatherMocks'
 
 let mockNo = 1;
@@ -41,15 +41,15 @@ export function mockedBackend() {
                     console.log("== MOCK == Mocked response for fetching user data will provided. Loged as USER. Status: OK");
                     resolve({ ok: true, json: () => userUser});     
                 //Mock for revoking access token when logout              
-                } if (url.endsWith('logout')) {
+                } else if (url.endsWith('logout')) {
                     resolve({ ok: true, json: () => ""});  
                 //Mock for user list for ManaheUsers
-                } if (url.endsWith('users')) {
+                } else if (url.endsWith('users')) {
                     console.log("== MOCK == Mocked response for users list request ==")
                     resolve({ ok: true, json: () => usersList});
                 } else {
                     console.log("== MOCK == Uncovered request, status: NOK. URL: " + url);
-                    reject('Incorrect datas');
+                    reject('Response from mock - Incorrect datas');
                 }                
             }, 500);
         });

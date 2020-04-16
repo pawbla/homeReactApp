@@ -1,4 +1,5 @@
-import {callGetApi, callPostApi, callGetJwtTokenApi} from '../libs/callRestApi';
+import {callGetApi, callPostApi, callPutApi, 
+  callDeleteApi, callGetJwtTokenApi} from '../libs/callRestApi';
 
 const setJwtTokenFetched = (authResp) => ({
   type: 'FETCHED_JWT_TOKEN_SUCCESS',
@@ -108,4 +109,28 @@ export const callPOST = (endpoint, body, errorMessage) => {
       });
     dispatch(disableProgressBar());
   } 
+}
+
+export const callPUT = (endpoint, param, body, errorMessage) => {
+
+  return async (dispatch, getState) => {
+    dispatch(enableProgressBar());
+    await callPutApi(endpoint, param, body, getState().loggedUser.jwtToken)
+      .then()
+      .catch(error => {
+        alert(`${errorMessage} \n ${error}`);
+      });
+    dispatch(disableProgressBar());
+  }   
+}
+
+export const callDELETE = (endpoint, deleteParam, errorMessage) => {
+  return async (dispatch, getState) => {
+    dispatch(enableProgressBar());
+    await callDeleteApi(endpoint, deleteParam, getState().loggedUser.jwtToken)
+      .then()
+      .catch(error => 
+        alert(`${errorMessage} \n ${error}`));
+    dispatch(disableProgressBar());
+  }  
 }
