@@ -57,7 +57,7 @@ export default function Item(props) {
                     color="inherit"
                     className={styles.deleteIcon}
                     size="small"
-                    onClick={(e) => {e.stopPropagation(); props.onDelete(props.item.username)}}>
+                    onClick={(e) => {e.stopPropagation(); props.onDelete(props.item.id)}}>
                         <DeleteRoundedIcon fontSize="large"/>
                 </IconButton>
             </div>

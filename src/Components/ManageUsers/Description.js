@@ -8,19 +8,24 @@ const errorMessage = "Problem podczas aktualizacji danych.";
 
 function Description(props) {
 
-    const [values, setValues] = useState({firstName: "", lastName: "", email: "", enabled: true, role: ""});
+    const [values, setValues] = useState({firstName: "", lastName: "", email: "", enabled: true, role: {role: ""}});
 
     const onSubmit = (event) => {
         event.preventDefault();
-        props.callPUT(updateEndpoint, values.username ,values ,errorMessage);
+        props.callPUT(updateEndpoint, values.id, values, errorMessage);
     }
 
     useEffect(() => {
-        setValues(props.item);
+        setValues({...props.item, ['role']: {role: props.item.role}});
      }, []);
 
     const onChange = (event) => {
-        setValues({...values, [event.target.name]: event.target.value});
+        if (event.target.name === 'role') {
+            setValues({...values, [event.target.name]: {role: event.target.value}});
+        } else {
+            setValues({...values, [event.target.name]: event.target.value});
+        }
+        
     }
 
     const toggleCheck = () => {

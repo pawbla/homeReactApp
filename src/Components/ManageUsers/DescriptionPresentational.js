@@ -1,6 +1,8 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 
+const roles = ['ROLE_USER', 'ROLE_ADMIN'];
+
 const userDescStyles = makeStyles(theme => ({
     userDescription: {
         border: '2px solid #056DF5',
@@ -144,10 +146,12 @@ export default function DescriptionPresentational(props) {
                     <div className={styles.selectField}>
                         <select  style={{borderColor: disabledColor(styles.selectField)}}
                             name="role"
-                            value={props.value["role"]}
+                            value={props.value["role"]["role"]}
                             onChange={props.onChange}>
-                            <option className={styles.option}>ROLE_USER</option>
-                            <option>ROLE_ADMIN</option>
+                            {
+                                roles.map((role, index) => 
+                                    (<option className={styles.option} key={index}>{role}</option>))
+                            }
                         </select>
                     </div>
                     <div className={styles.checkboxField} onClick={props.toggleCheck}>
