@@ -12,7 +12,9 @@ function Description(props) {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        props.callPUT(updateEndpoint, values.id, values, errorMessage);
+        console.log("=> " + JSON.stringify(values));
+        console.log("=? " + values.user_id)
+        props.callPUT(updateEndpoint, values.user_id, values, errorMessage);
     }
 
     useEffect(() => {

@@ -1,5 +1,5 @@
 import {callGetApi, callPostApi, callPutApi, 
-  callDeleteApi, callGetJwtTokenApi} from '../libs/callRestApi';
+  callDeleteApi, callGetJwtTokenApi, callPostApiNoAuth} from '../libs/callRestApi';
 
 const setJwtTokenFetched = (authResp) => ({
   type: 'FETCHED_JWT_TOKEN_SUCCESS',
@@ -62,20 +62,12 @@ export const loginToApplication = (user, password) => {
   } 
 } 
 
-export const registerUser = (aUserName, aPassword, aFirstName, aLastName, aEmail) => {
+export const registerUser = (body) => {
   
-  const body = {
-    userName: aUserName,
-    password: aPassword,
-    firstName: aFirstName, 
-    lastName: aLastName, 
-    email: aEmail
-  }
-
   return async (dispatch, getState) => {
-    const endpoint = 'setuser';
+    const endpoint = 'register';
     dispatch(enableProgressBar());
-    await callPostApi(endpoint, body, getState().loggedUser.jwtToken)
+    await callPostApiNoAuth(endpoint, body)
       .then()
       .catch(error => {
         dispatch(logOutUserOrError());

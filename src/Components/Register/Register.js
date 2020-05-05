@@ -8,7 +8,7 @@ const fields = [
     {
         type: 'text',
         placeholder: 'Login',
-        name: 'login',
+        name: 'userName',
         validate: true
     },
     {
@@ -20,20 +20,20 @@ const fields = [
     {
         type: 'text',
         placeholder: 'Imię',
-        name: 'fName',
+        name: 'firstName',
         validate: true
     },
     {
         type: 'text',
         placeholder: 'Nazwisko',
-        name: 'lName',
+        name: 'lastName',
         validate: false
     },
     {
         type: 'text',
         placeholder: 'email',
         name: 'email',
-        validate: true
+        validate: false
     },   
 ]
 
@@ -41,7 +41,7 @@ const fields = [
 
 function Register(props) {
 
-    const [values, setText] = useState({login: "", password: "", fName: "", lName: "", email: ""});
+    const [values, setText] = useState({userName: "", password: "", firstName: "", lastName: "", email: ""});
     const [errors, setError] = useState({});
 
     const validateField = () => {

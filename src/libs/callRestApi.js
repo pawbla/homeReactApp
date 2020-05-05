@@ -46,7 +46,24 @@ export const callPostApi = (endpoint, body, token) => {
         "Content-Type": "application/json",
         'Authorization': 'Bearer ' + token,
       },
-      body: body
+      body: JSON.stringify(body)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+      }
+      return response.json()          
+  })
+}
+
+export const callPostApiNoAuth = (endpoint, body) => {
+  const url = `${apiUrl}${endpoint}`;
+  return fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
     })
     .then(response => {
       if (!response.ok) {
@@ -64,7 +81,7 @@ export const callPutApi = (endpoint, param, body, token) => {
         "Content-Type": "application/json",
         'Authorization': 'Bearer ' + token,
       },
-      body: body
+      body: JSON.stringify(body)
     })
     .then(response => {
       if (!response.ok) {

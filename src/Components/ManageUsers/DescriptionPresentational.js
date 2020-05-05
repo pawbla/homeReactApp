@@ -141,7 +141,7 @@ export default function DescriptionPresentational(props) {
                                 style={{borderColor: disabledColor(styles.textField)}}>
                         </input>
                     </div>
-        ``        </div>
+                </div>
                 <div className={styles.rightArea}>
                     <div className={styles.selectField}>
                         <select  style={{borderColor: disabledColor(styles.selectField)}}
