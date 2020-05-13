@@ -42,7 +42,10 @@ export function mockedBackend() {
                     resolve({ ok: true, json: () => userUser});     
                 //Mock for revoking access token when logout              
                 } else if (url.endsWith('logout')) {
-                    resolve({ ok: true, json: () => ""});  
+                    resolve({ ok: true, json: () => ""});
+                //Mock for register user              
+                } else if (url.endsWith('register')) {
+                    resolve({ ok: true, json: () => ""});   
                 //Mock for user list for ManaheUsers
                 } else if (url.endsWith('users')) {
                     console.log("== MOCK == Mocked response for users list request ==")

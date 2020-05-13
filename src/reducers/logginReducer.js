@@ -1,3 +1,5 @@
+import { setRegisteredFail } from "../actions"
+
 export const loggedUser = (state = '', action) => {
   switch (action.type) {
     case 'FETCHED_JWT_TOKEN_SUCCESS':
@@ -59,4 +61,29 @@ export const fetchedData = (state = '', action) => {
     default:
       return state
   } 
+}
+
+export const isUserRegistered = (state = '', action) => {
+  switch (action.type) {
+    case 'REGISTERED_INIT':
+      return {
+        ...state, 
+        isRegistered: false,
+        error: false
+      }
+    case 'REGISTERED_SUCCESS':
+      return {
+        ...state, 
+        isRegistered: true,
+        error: false
+      }
+      case 'REGISTERED_FAIL':
+        return {
+          ...state, 
+          isRegistered: false,
+          error: true
+        }
+    default:
+      return state
+  }   
 }

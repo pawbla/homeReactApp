@@ -16,8 +16,9 @@ function ManageUsers(props) {
         props.callGET(usersEndpoint, "", errorMsg)
      }, []);
 
-    const onDelete = (id) => {
-        props.callDELETE(deleteEndpoint, id, deleteErrMsg);
+    const onDelete = async (id) => {
+        await props.callDELETE(deleteEndpoint, id, deleteErrMsg);
+        window.location.reload(); 
     }
 
     return (

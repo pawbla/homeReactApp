@@ -29,6 +29,18 @@ export const setFetchedData = (payload, id) => ({
   id
 });
 
+export const setRegisteredInit = () => ({
+  type: 'REGISTERED_INIT',
+})
+
+export const setRegisteredSuccess = () => ({
+  type: 'REGISTERED_SUCCESS',
+});
+
+export const setRegisteredFail = () => ({
+  type: 'REGISTERED_FAIL',
+});
+
 const fetchJwtToken = (user, password) => {
   return async (dispatch) => {
     await callGetJwtTokenApi(user, password)
@@ -68,10 +80,10 @@ export const registerUser = (body) => {
     const endpoint = 'register';
     dispatch(enableProgressBar());
     await callPostApiNoAuth(endpoint, body)
-      .then()
+      .then(() => {dispatch(setRegisteredSuccess())})
       .catch(error => {
-        dispatch(logOutUserOrError());
         alert("Nie można zapisać danych użytkownika. \n" + error);
+        dispatch(setRegisteredFail());
       });
     dispatch(disableProgressBar());
   }

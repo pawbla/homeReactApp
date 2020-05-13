@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import RegisterPresentational from './RegisterPresentational';
-import {registerUser} from '../../actions/';
+import {registerUser, setRegisteredInit} from '../../actions/';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 
@@ -37,12 +37,18 @@ const fields = [
     },   
 ]
 
-
-
 function Register(props) {
 
     const [values, setText] = useState({userName: "", password: "", firstName: "", lastName: "", email: ""});
     const [errors, setError] = useState({});
+
+    useEffect(() => {
+        if(props.isRegistered) {
+            alert("Użytkownik został zarejestrowany. \nPo zatwierdzeniu będziesz mógł się zalogować.");    
+            props.history.push('/login');   
+            props.setRegisteredInit();     
+        }
+      }, [props.isRegistered]);
 
     const validateField = () => {
         let errorObj = {};
@@ -70,7 +76,7 @@ function Register(props) {
         if (validateField()) {
             alert("Pola zaznaczone na czerwono powinny zostać uzupełnione");
         } else {
-            await props.registerUser(values);  
+            props.registerUser(values);  
         }
     }
 
@@ -86,6 +92,12 @@ function Register(props) {
     );
 }
 
-const mapDispatchToProps = {registerUser};
+const mapStateToProps = (state) => {
+    return {
+        isRegistered: state.isUserRegistered.isRegistered
+    }
+};
 
-export default withRouter(connect(null, mapDispatchToProps)(Register));
+const mapDispatchToProps = {registerUser, setRegisteredInit};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Register));

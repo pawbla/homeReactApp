@@ -10,11 +10,12 @@ function Description(props) {
 
     const [values, setValues] = useState({firstName: "", lastName: "", email: "", enabled: true, role: {role: ""}});
 
-    const onSubmit = (event) => {
+    const onSubmit = async (event) => {
         event.preventDefault();
         console.log("=> " + JSON.stringify(values));
         console.log("=? " + values.user_id)
-        props.callPUT(updateEndpoint, values.user_id, values, errorMessage);
+        await props.callPUT(updateEndpoint, values.user_id, values, errorMessage);
+        window.location.reload(); 
     }
 
     useEffect(() => {
