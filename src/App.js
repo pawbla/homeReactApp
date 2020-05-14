@@ -4,9 +4,10 @@ import Aside from './Aside';
 import {Nav} from './Nav';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Routes from './Routes';
-import LoginPage from './Components/LoginPage'
-import Logout from './Components/Logout'
-import Register from './Components/Register/Register'
+import LoginPage from './Components/LoginPage';
+import Logout from './Components/Logout';
+import Register from './Components/Register/Register';
+import Internal from './Components/Internal/Internal';
 
 
 //Mocked service for testing purpose, remove when deployed for integration
@@ -19,6 +20,7 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
+          <Route exact path="/internal" component={Internal} />
           <Route exact path="/login" component={LoginPage} />
           <Route exact path="/logout" component={Logout} />
           <Route exact path="/register" component={Register} />
