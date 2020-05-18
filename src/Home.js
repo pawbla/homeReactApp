@@ -1,13 +1,16 @@
 import React from 'react';
+import MainSection from './Components/MainSection/MainSection';
+
+const pageTitle = "Home";
 
 class Home extends React.Component {
   render() {
     return (
       <div>
-        home
+        asdsad
       </div>
     );
   }
  }
 
- export default Home;
+ export default MainSection(Home, pageTitle);

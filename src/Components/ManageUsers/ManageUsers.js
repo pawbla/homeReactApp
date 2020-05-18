@@ -26,7 +26,7 @@ function ManageUsers(props) {
             {props.reqId === usersEndpoint ?  
             <ManageUsersPresentational users={props.datas} 
                 onDelete={onDelete}/>
-                : (<div></div>)}
+            : (<div></div>)}
         </div>
     );
 }

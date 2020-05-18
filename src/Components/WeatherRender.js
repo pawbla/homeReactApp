@@ -1,5 +1,6 @@
 import React from 'react';
 import {makeStyles } from '@material-ui/core/styles';
+import MainSection from './MainSection/MainSection';
 
 import pic1  from '../assets/weatherIcons/01.png';
 import pic2  from '../assets/weatherIcons/02.png';
@@ -71,6 +72,8 @@ const useStyles = makeStyles(theme => ({
     }
   }));
 
+const pageTitle = "Pogoda";
+
 function WeatherRender(props) {
   
   const styles = useStyles();
@@ -130,7 +133,7 @@ function WeatherRender(props) {
   )
 }
 
-export default WeatherRender;
+export default MainSection(WeatherRender, pageTitle);
 
 function WeatherComponent(props) {
 

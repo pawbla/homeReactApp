@@ -10,7 +10,7 @@ main {
   height: 100%;
   display: grid;
   grid-template-columns: minmax(200px, 250px) 3fr minmax(200px, 250px);
-  grid-gap: 15px;
+  grid-gap: 10px;
 }
 
 .aside {

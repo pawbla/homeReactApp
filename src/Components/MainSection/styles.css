@@ -1,0 +1,12 @@
+.main_header {
+    box-shadow: 0 0 5px gray;
+    padding: 1px 15px;
+    margin: 0px 5px;
+}
+
+.main_content {
+    height: 78vh;
+    margin-top: 15px;
+    padding: 5px;
+    overflow-y: auto;
+}
