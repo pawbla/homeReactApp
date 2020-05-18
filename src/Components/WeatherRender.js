@@ -1,6 +1,5 @@
 import React from 'react';
 import {makeStyles } from '@material-ui/core/styles';
-import MainSection from './MainSection/MainSection';
 
 import pic1  from '../assets/weatherIcons/01.png';
 import pic2  from '../assets/weatherIcons/02.png';
@@ -133,7 +132,7 @@ function WeatherRender(props) {
   )
 }
 
-export default MainSection(WeatherRender, pageTitle);
+export default WeatherRender;
 
 function WeatherComponent(props) {
 

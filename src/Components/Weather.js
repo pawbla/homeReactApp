@@ -2,13 +2,14 @@ import React, {useEffect} from 'react';
 import WeatherRender from './WeatherRender';
 import { connect } from "react-redux";
 import {callGET} from '../actions/';
+import MainSection from './MainSection/MainSection';
+
+const pageTitle = "Pogoda";
 
 function Weather(props) {
  
   const endpoint = 'weather';
   const errorMsg = "Nie można pobrać danych ze strony.";
-
-  let isFetched = false;
 
   useEffect(() => {
      props.callGET(endpoint, "", errorMsg);
@@ -22,6 +23,7 @@ function Weather(props) {
 }
 
 const mapStateToProps = (state) => {
+
   return {
     datas: state.fetchedData.payload,
     reqId: state.fetchedData.id
@@ -30,4 +32,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {callGET};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Weather);
+export default MainSection(connect(mapStateToProps, mapDispatchToProps)(Weather), pageTitle);

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ManageUsersPresentational from './ManageUsersPresentational'; 
 import { connect } from "react-redux";
 import {callGET, callDELETE} from '../../actions/';
+import MainSection from '../MainSection/MainSection';
 
 const usersEndpoint = 'users';
 const deleteEndpoint = 'deleteUser';
@@ -9,6 +10,7 @@ const deleteEndpoint = 'deleteUser';
 const errorMsg = "Nie można pobrać danych ze strony.";
 const deleteErrMsg = "Wystąpił problem podczas usuwania użytkownika";
 
+const pageTitle = "Użytkownicy";
 
 function ManageUsers(props) {
 
@@ -41,4 +43,4 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = {callGET, callDELETE};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers);
+export default MainSection(connect(mapStateToProps, mapDispatchToProps)(ManageUsers), pageTitle);

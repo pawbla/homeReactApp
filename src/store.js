@@ -11,12 +11,12 @@ const persistConfig = {
     storage: storage,
     // Whitelist (Save Specific Reducers)
     whitelist: [
+      'fetchedData',
       'loggedUser'
     ],
     // Blacklist (Don't Save Specific Reducers)
     blacklist: [
       'isProgressBar', 
-      'fetchedData',
       'isUserRegistered'
     ],
   };
