@@ -1,10 +1,9 @@
-const baseUrl = "localhost:8080"
-const apiUrl = `http://${baseUrl}/api/v1/`;
+const apiUrl = `//api/v1/`;
 
 export const callGetJwtTokenApi = (user, password) => {
   const clientId = "clientid";
   const clientSecret = "clientsectet";
-  const loginUrl = `http://${baseUrl}/oauth/token`;
+  const loginUrl = `//oauth/token`;
   return fetch(loginUrl, {
       method: 'POST',
       headers: {

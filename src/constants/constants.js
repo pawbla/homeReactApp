@@ -1,5 +1,5 @@
 export const constants = {
-    baseUrl: "http://localhost:8080/api/v1/"
+    baseUrl: "//"
 };
 
 export const roles = {
