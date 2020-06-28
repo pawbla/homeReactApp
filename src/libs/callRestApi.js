@@ -1,9 +1,9 @@
-const apiUrl = `//api/v1/`;
+const apiUrl = `/api/v1/`;
 
 export const callGetJwtTokenApi = (user, password) => {
   const clientId = "clientid";
   const clientSecret = "clientsectet";
-  const loginUrl = `//oauth/token`;
+  const loginUrl = `/oauth/token`;
   return fetch(loginUrl, {
       method: 'POST',
       headers: {

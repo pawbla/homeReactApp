@@ -1,5 +1,5 @@
 export const constants = {
-    baseUrl: "//"
+    baseUrl: "/"
 };
 
 export const roles = {
