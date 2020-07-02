@@ -67,11 +67,14 @@ const fetchUserData = (user) => {
 
 export const loginToApplication = (user, password) => {
   return async (dispatch, getState) => {
+    dispatch(enableProgressBar());
     await dispatch(fetchJwtToken(user, password));
     if (getState().loggedUser.isBeingAuthenticated) {
       await dispatch(fetchUserData(user));
     }
+    dispatch(disableProgressBar());
   } 
+  
 } 
 
 export const registerUser = (body) => {

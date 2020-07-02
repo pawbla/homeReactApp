@@ -57,7 +57,7 @@ export const weatherResp = {
         "uvIndexDescr": {
             "date": "04.08 21:44",
             "isError": false,
-            "value": "Niska"
+            "value": "Średnia"
         },
         "windDirectionDeg": {
             "date": "04.08 21:44",

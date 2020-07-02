@@ -92,7 +92,7 @@ function WeatherRender(props) {
       {name: "Ciśnienie", element: "pressure", unit: "hPa", data: (props.datas.weather)},
       {name: "Prędkość wiatru", element: "windSpeed", unit: "km/h", data: (props.datas.weather)}, 
       {name: "Kierunek wiatru", element: "windDirection", data: (props.datas.weather)}, 
-      {name: "Zachmurzenie", element: "cloudCover", data: (props.datas.weather)},
+      {name: "Zachmurzenie", element: "cloudCover", unit: "%", data: (props.datas.weather)},
       {name: "Pułap chmur", element: "ceiling", unit: "m", data: (props.datas.weather)}, 
       {name: "Widoczność", element: "visibility", unit: "km", data: (props.datas.weather)}
     ];

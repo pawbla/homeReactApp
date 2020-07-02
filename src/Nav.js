@@ -61,8 +61,8 @@ function Nav(props) {
         <MenuElement pic="fa fa-home" title="Home" path="/index" roles={roles.USER} />
         <MenuElement pic="fa fa-cloud" title="Pogoda" path="/weather" roles={roles.USER}/>
         <MenuElement pic="fa fa-users" title="Użytkownicy" path="/manage_users" roles={roles.ADMIN}/>
-        <MenuElement pic="fa fa-cogs" title="Czujniki" path="/sensor" roles={roles.ADMIN}/>
-        <MenuElement pic="fa fa-warning" title="Sys info" path="/sysinfo" roles={roles.ADMIN}/>
+        {/*<MenuElement pic="fa fa-cogs" title="Czujniki" path="/sensor" roles={roles.ADMIN}/>
+        <MenuElement pic="fa fa-warning" title="Sys info" path="/sysinfo" roles={roles.ADMIN}/>*/}
       </ul>
     </div>
   );

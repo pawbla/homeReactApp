@@ -182,11 +182,11 @@ function Notifications() {
   const styles = useStyles();
   return(
     <div>
-      <IconButton className={styles.iconButton}>
+      {/*<IconButton className={styles.iconButton}>
           <Badge badgeContent={12} color="secondary">
             <NotificationsIcon />
           </Badge>
-      </IconButton>
+  </IconButton>*/}
     </div>
   )
 }
