@@ -100,10 +100,10 @@ function WeatherRender(props) {
     const airCondition = [
       {name: "PM1", element: "pm1", data: (props.datas.airPolution)}, 
       {name: "PM10", element: "pm10", data: (props.datas.airPolution)}, 
-      {name: "PM10", element: "pm10percent", value: "%", data: (props.datas.airPolution)}, 
-      {name: "PM25", element: "pm25", data: (props.datas.airPolution)}, 
-      {name: "PM25", element: "pm25percent", value: "%", data: (props.datas.airPolution)},
-      {name: "CAQI", element: "caqi", value: "%", color: "caqiColor", data: (props.datas.airPolution)}
+      {name: "PM10", element: "pm10percent", unit: "%", data: (props.datas.airPolution)}, 
+      {name: "PM2.5", element: "pm25", data: (props.datas.airPolution)}, 
+      {name: "PM2.5", element: "pm25percent", unit: "%", data: (props.datas.airPolution)},
+      {name: "CAQI", element: "caqi", color: "caqiColor", data: (props.datas.airPolution)}
     ];
 
     const uvIndex = [
