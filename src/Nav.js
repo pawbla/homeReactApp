@@ -73,7 +73,7 @@ function UserMenuBox() {
   return(
     <div>
       <ul className={styles.list}>
-        <MenuElement pic="fa fa-cog" title="Ustawienia" path="/settings" roles={roles.USER}/>
+        <MenuElement pic="fa fa-cog" title="Mój profil" path="/my_profile" roles={roles.USER}/>
         <MenuElement pic="fa fa-window-close" title="Wyloguj" path="/logout" roles={roles.USER}/>
       </ul>
     </div>

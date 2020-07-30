@@ -1,0 +1,19 @@
+.btn {
+    border: 2px solid #056DF5;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+    padding: 4px 7px;
+    background: #056DF5;
+    margin: 3px;
+    color: #f8f8ff;
+}
+
+.btn:active {
+    box-shadow: 0 0 7px gray;
+}
+
+.btn:hover {
+    border: 2px solid #0347C3;
+    background: #0347C3;
+}

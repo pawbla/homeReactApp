@@ -1,0 +1,16 @@
+.myprofile > form {
+    margin: 30px 20px;
+}
+
+.myprofile > div {
+    margin-left: 20px;
+}
+
+.myprofile > form > div {
+    margin-bottom: 8px;
+}
+
+.myprofile .submit {
+    margin-top: 12px;
+    margin-bottom: 0px;
+}

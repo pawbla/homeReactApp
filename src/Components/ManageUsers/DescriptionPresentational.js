@@ -165,7 +165,7 @@ export default function DescriptionPresentational(props) {
                     <div className={styles.buttonField}>
                         <input 
                             type='submit'
-                            value="Zatwierdź">
+                            value="Prześlij">
                         </input>
                     </div>
                 </div>

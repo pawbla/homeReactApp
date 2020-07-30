@@ -12,8 +12,6 @@ function Description(props) {
 
     const onSubmit = async (event) => {
         event.preventDefault();
-        console.log("=> " + JSON.stringify(values));
-        console.log("=? " + values.user_id)
         await props.callPUT(updateEndpoint, values.user_id, values, errorMessage);
         window.location.reload(); 
     }
