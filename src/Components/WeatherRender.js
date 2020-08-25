@@ -99,10 +99,8 @@ function WeatherRender(props) {
 
     const airCondition = [
       {name: "PM1", element: "pm1", data: (props.datas.airPolution)}, 
-      {name: "PM10", element: "pm10", data: (props.datas.airPolution)}, 
-      {name: "PM10", element: "pm10percent", unit: "%", data: (props.datas.airPolution)}, 
-      {name: "PM2.5", element: "pm25", data: (props.datas.airPolution)}, 
-      {name: "PM2.5", element: "pm25percent", unit: "%", data: (props.datas.airPolution)},
+      {name: "PM10", element: "pm10", element2: "pm10percent", unit2: "%", data: (props.datas.airPolution)}, 
+      {name: "PM2.5", element: "pm25", element2: "pm25percent", unit2: "%",data: (props.datas.airPolution)}, 
       {name: "CAQI", element: "caqi", color: "caqiColor", data: (props.datas.airPolution)}
     ];
 
@@ -147,7 +145,7 @@ function WeatherComponent(props) {
         newFontWeight = item.color ? "bold" : "normal",
         <div className={styles.text} style={{color: newColor, fontWeight: newFontWeight}}>
             <span>{item.name}</span>
-            <span>{item.data[item.element]["value"]} {item.unit ? item.unit : ""}</span>
+            <span>{item.data[item.element]["value"]}{item.unit ? item.unit : ""}{item.data[item.element2] ? " / " + item.data[item.element2]["value"] : ""}{item.unit2 ? item.unit2 : ""}</span>
         </div>
     );
   
