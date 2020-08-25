@@ -93,15 +93,18 @@ export const registerUser = (body) => {
 }
 
 export const callGET = (endpoint, query, errorMessage) => {
-
   return async (dispatch, getState) => {
     dispatch(enableProgressBar());
-    await callGetApi(endpoint, query, getState().loggedUser.jwtToken)
-      .then(json =>
-        dispatch(setFetchedData(json, endpoint)))
-      .catch(error => 
-        alert(`${errorMessage} \n ${error}`));
-    dispatch(disableProgressBar());
+    return await callGetApi(endpoint, query, getState().loggedUser.jwtToken)
+      .then(json => {
+        dispatch(setFetchedData(json, endpoint));
+        dispatch(disableProgressBar());
+        return json;
+      })
+      .catch(error => {
+        alert(`${errorMessage} \n ${error}`); 
+        dispatch(disableProgressBar())});
+     
   } 
 }
 

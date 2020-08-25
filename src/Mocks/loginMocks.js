@@ -1,13 +1,15 @@
 export const userAdmin = {
-    login: "adminLogin",
+    login: "admin",
     firstName: "AdminName",
     lastName: "LastName",
-    role: "ROLE_ADMIN"
+    role: "ROLE_ADMIN",
+    email: "admin@email.com"
 }
 
 export const userUser = {
-    login: "userLogin",
+    login: "user",
     firstName: "UserName",
     lastName: "LastName",
-    role: "ROLE_USER"
+    role: "ROLE_USER",
+    email: ""
 }
