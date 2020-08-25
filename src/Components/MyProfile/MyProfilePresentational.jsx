@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './styles.css'
 
-import HS_Input from '../../libs/hsInput'
+import {hsInput as HS_Input} from '../../libs/hsInput'
 import {hsSubmit as HS_Submit, hsButton as HS_Button} from '../../libs/hsButton'
 
 function MyProfilePresentational(props) {

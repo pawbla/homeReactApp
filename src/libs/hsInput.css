@@ -12,3 +12,7 @@
     border: 2px solid #0347C3;
     box-shadow: 0 0 5px gray;
 }
+
+.input_field_error {
+    border-color: red;
+}

@@ -2,6 +2,8 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import { LinearProgress } from '@material-ui/core';
 import { connect } from 'react-redux';
+import {hsInput as HS_Input} from '../../libs/hsInput'
+import {hsSubmit as HS_Submit, hsButton as HS_Button} from '../../libs/hsButton'
 
 const useStyles = makeStyles(theme => ({
     main: {
@@ -25,41 +27,7 @@ const useStyles = makeStyles(theme => ({
         height: '4px'
     },
     button: {
-        marginTop: '10px',
-        '& input': {
-            display: 'inline-block',
-            width: '84%',
-            height: '35px',
-            borderRadius: '6px',
-            padding: '2px',
-            margin: '5px 0px',
-            background: '#F0F8FF',
-            border: '2px solid #056DF5',
-            color: '#056DF5',
-            outline: 'none',
-            fontSize: '18px',
-            '&:active': {
-                background: '#05C5F5',
-                border: '2px solid #F0F8FF',
-                color: '#F0F8FF',
-                boxShadow: '0 0 15px gray',
-            },   
-        }, 
-    },
-    textField: {
-            '& input': {
-            border: '2px solid #056DF5',
-            width: '80%',
-            fontSize: '20px',
-            padding: '4px 7px',
-            marginTop: '5px',
-            borderRadius: '6px',
-            outline: 'none',
-            background: '#f8f8ff',
-            '&:focus': {
-                boxShadow: '0 0 13px gray'
-            }
-        } 
+        marginTop: '10px', 
     },
 }));
 
@@ -77,23 +45,20 @@ function RegisterPresentational(props) {
                 <form className={styles.form} onSubmit={props.onSubmit}>
                     {
                         props.fields.map((field, index) => (
-                            <div className={styles.textField} key={index} >
-                                <input
-                                    style={{borderColor: props.errors[field.name] ? 'red' : styles.textField.border}}
-                                    type={field.type} 
-                                    placeholder={field.placeholder} 
+                            <div key={index} >
+                                <HS_Input placeholder={field.placeholder}
+                                    width="70%"
+                                    type={field.type}
                                     name={field.name}
+                                    onChange={event=> props.onChange(event)}
                                     value={props.value[field.name]}
-                                    onChange={event=> props.onChange(event)}>
-                                </input>
+                                    isError={props.errors[field.name]}></HS_Input>                               
                             </div>
                         ))
                     }
                     <div className={styles.button}>
-                        <input 
-                            type='submit'
-                            value="Wyślij">
-                        </input>
+                        <HS_Submit width="74%"
+                                   alt="true"></HS_Submit>
                     </div>
                 </form>
             </div>

@@ -3,8 +3,9 @@ import './hsButton.css'
 
 function hsSubmit(props) {
     return(
-        <input className="btn"
+        <input className={props.alt ? "btn btnAlt" : "btn"}
                type="submit"
+               value={props.value === "" ? "Prześlij" : props.value}
                style={{width: props.width}}>
          </input>
     )
@@ -12,7 +13,7 @@ function hsSubmit(props) {
 
 function hsButton(props) {
     return(
-        <button className="btn"
+        <button className={props.alt ? "btn btnAlt" : "btn"}
                 style={{width: props.width}}>
                     {props.text}
         </button>
