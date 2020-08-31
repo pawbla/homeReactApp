@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import MyProfilePresentational from './MyProfilePresentational';
 import MainSection from '../MainSection/MainSection';
 import { connect } from "react-redux";
-import {callGET, setFetchedData} from '../../actions/';
-import {callGetApi} from '../../libs/callRestApi';
+import {callGET, callPUT} from '../../actions/';
 
 const pageTitle = "Mój profil";
 const getUserEndpoint = 'user';
-const errorMsg = "Nie można pobrać danych ze strony.";
+const errorMsgFetch = "Nie można pobrać danych ze strony.";
+
+const updateEndpoint = 'updateUser';
+const errorMsgPut = "Problem podczas aktualizacji danych.";
 
 function MyProfile(props) {
 
@@ -20,7 +22,7 @@ function MyProfile(props) {
      }, []);
 
      const onEnter = async() => {
-      const response = await props.callGET(getUserEndpoint, `?login=${props.user}`, errorMsg);
+      const response = await props.callGET(getUserEndpoint, `?login=${props.user}`, errorMsgFetch);
       setText(response);
      }
 
@@ -29,11 +31,18 @@ function MyProfile(props) {
         setText({...values, [event.target.name]: event.target.value});
     }
 
+    const onSubmit = async (event) => {
+      event.preventDefault();
+      await props.callPUT(updateEndpoint, values.user_id, values, errorMsgPut);
+      window.location.reload(); 
+    }
+
     return (
         <div>
             {props.reqId === getUserEndpoint ? <MyProfilePresentational datas={props.datas}
                                       onChange={onChange}
-                                      values={values} /> : <div></div>}
+                                      values={values} 
+                                      onSubmit={onSubmit}/> : <div></div>}
         </div>
     );
 }
@@ -48,6 +57,6 @@ const mapStateToProps = (state) => {
     }
   };
   
-  const mapDispatchToProps = {callGET};
+  const mapDispatchToProps = {callGET, callPUT};
 
 export default MainSection(connect(mapStateToProps, mapDispatchToProps)(MyProfile), pageTitle);

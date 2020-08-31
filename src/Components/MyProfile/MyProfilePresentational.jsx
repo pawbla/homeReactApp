@@ -8,7 +8,7 @@ function MyProfilePresentational(props) {
 
     return (
         <div className = "incontext myprofile">
-            <form>
+            <form onSubmit={props.onSubmit}>
                 <div>
                     <HS_Input placeholder="Imię"
                               width="28%"
