@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import MyProfilePresentational from './MyProfilePresentational';
+import Modal from './Modal';
 import MainSection from '../MainSection/MainSection';
 import { connect } from "react-redux";
 import {callGET, callPUT} from '../../actions/';
@@ -16,6 +17,7 @@ function MyProfile(props) {
     const initState = {firstName: "", lastName: "", email: ""};
 
     const [values, setText] = useState(initState);
+    const [isPopup, togglePopup] = useState(false);
 
     useEffect(() => {
       onEnter();
@@ -37,12 +39,19 @@ function MyProfile(props) {
       window.location.reload(); 
     }
 
+    const showHidePopup = () => {
+      togglePopup(!isPopup);
+    }
+
     return (
         <div>
             {props.reqId === getUserEndpoint ? <MyProfilePresentational datas={props.datas}
                                       onChange={onChange}
                                       values={values} 
-                                      onSubmit={onSubmit}/> : <div></div>}
+                                      onSubmit={onSubmit}
+                                      showPassPopup={showHidePopup}/> : <div></div>}
+            {isPopup ? <Modal closePopup={showHidePopup}
+                              user_id={values.user_id}/> : ""}
         </div>
     );
 }

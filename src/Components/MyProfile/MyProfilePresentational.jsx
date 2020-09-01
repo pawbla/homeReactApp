@@ -36,7 +36,8 @@ function MyProfilePresentational(props) {
             </form>
             <div>
                 <HS_Button text="Zmień hasło"
-                            width="30%"></HS_Button>
+                            width="29%"
+                            onClick={props.showPassPopup}></HS_Button>
             </div>
         </div>
     );

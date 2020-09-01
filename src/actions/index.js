@@ -104,33 +104,38 @@ export const callGET = (endpoint, query, errorMessage) => {
       .catch(error => {
         alert(`${errorMessage} \n ${error}`); 
         dispatch(disableProgressBar())});
-     
   } 
 }
 
 export const callPOST = (endpoint, body, errorMessage) => {
-
   return async (dispatch, getState) => {
     dispatch(enableProgressBar());
-    await callPostApi(endpoint, body, getState().loggedUser.jwtToken)
-      .then()
+    return await callPostApi(endpoint, body, getState().loggedUser.jwtToken)
+      .then(json => {
+        dispatch(disableProgressBar());
+        return json;
+      })
       .catch(error => {
+        dispatch(disableProgressBar());
         alert(`${errorMessage} \n ${error}`);
+        return {hasError: true};
       });
-    dispatch(disableProgressBar());
   } 
 }
 
 export const callPUT = (endpoint, param, body, errorMessage) => {
-
   return async (dispatch, getState) => {
     dispatch(enableProgressBar());
-    await callPutApi(endpoint, param, body, getState().loggedUser.jwtToken)
-      .then()
+    return await callPutApi(endpoint, param, body, getState().loggedUser.jwtToken)
+      .then(json => {
+        dispatch(disableProgressBar());
+        return json;
+      })
       .catch(error => {
+        dispatch(disableProgressBar());
         alert(`${errorMessage} \n ${error}`);
+        return {hasError: true};
       });
-    dispatch(disableProgressBar());
   }   
 }
 

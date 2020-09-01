@@ -14,7 +14,8 @@ function hsSubmit(props) {
 function hsButton(props) {
     return(
         <button className={props.alt ? "btn btnAlt" : "btn"}
-                style={{width: props.width}}>
+                style={{width: props.width}}
+                onClick={props.onClick}>
                     {props.text}
         </button>
     )
