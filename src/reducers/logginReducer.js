@@ -17,7 +17,7 @@ export const loggedUser = (state = '', action) => {
       return {
         ...state, 
           isAuthenticated: true,
-          user: action.user.login,
+          user: action.user.username,
           role: action.user.role,
           firstName: action.user.firstName,
           lastName: action.user.lastName,

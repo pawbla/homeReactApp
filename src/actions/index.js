@@ -127,9 +127,9 @@ export const callPUT = (endpoint, param, body, errorMessage) => {
   return async (dispatch, getState) => {
     dispatch(enableProgressBar());
     return await callPutApi(endpoint, param, body, getState().loggedUser.jwtToken)
-      .then(json => {
+      .then(() => {
         dispatch(disableProgressBar());
-        return json;
+        return {hasError: false};
       })
       .catch(error => {
         dispatch(disableProgressBar());

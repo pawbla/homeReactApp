@@ -1,5 +1,6 @@
 export const userAdmin = {
-    login: "admin",
+    user_id: "1",
+    username: "admin",
     firstName: "AdminName",
     lastName: "LastName",
     role: "ROLE_ADMIN",
@@ -7,7 +8,8 @@ export const userAdmin = {
 }
 
 export const userUser = {
-    login: "user",
+    user_id: "2",
+    username: "user",
     firstName: "UserName",
     lastName: "LastName",
     role: "ROLE_USER",

@@ -37,7 +37,7 @@ function Modal(props) {
             newPassword: values.newPass
         }
         
-        const resp = await props.callPUT(changePassEndpoint, props.user_id, JSON.stringify(objToSend), errorMessage);
+        const resp = await props.callPUT(changePassEndpoint, props.login, JSON.stringify(objToSend), errorMessage);
         if (resp.hasError) {
             setText(initState);
             return;
