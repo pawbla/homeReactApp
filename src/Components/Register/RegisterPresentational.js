@@ -2,8 +2,8 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import { LinearProgress } from '@material-ui/core';
 import { connect } from 'react-redux';
-import {hsInput as HS_Input} from '../../libs/hsInput'
-import {hsSubmit as HS_Submit, hsButton as HS_Button} from '../../libs/hsButton'
+import {hsInput as HsInput} from '../../libs/hsInput'
+import {hsSubmit as HsSubmit} from '../../libs/hsButton'
 
 const useStyles = makeStyles(theme => ({
     main: {
@@ -46,19 +46,19 @@ function RegisterPresentational(props) {
                     {
                         props.fields.map((field, index) => (
                             <div key={index} >
-                                <HS_Input placeholder={field.placeholder}
+                                <HsInput placeholder={field.placeholder}
                                     width="70%"
                                     type={field.type}
                                     name={field.name}
                                     onChange={event=> props.onChange(event)}
                                     value={props.value[field.name]}
-                                    isError={props.errors[field.name]}></HS_Input>                               
+                                    isError={props.errors[field.name]}></HsInput>                               
                             </div>
                         ))
                     }
                     <div className={styles.button}>
-                        <HS_Submit width="74%"
-                                   alt="true"></HS_Submit>
+                        <HsSubmit width="74%"
+                                   alt="true"></HsSubmit>
                     </div>
                 </form>
             </div>

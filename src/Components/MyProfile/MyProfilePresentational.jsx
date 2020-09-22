@@ -1,8 +1,8 @@
 import React from 'react';
 import './styles.css'
 
-import {hsInput as HS_Input} from '../../libs/hsInput'
-import {hsSubmit as HS_Submit, hsButton as HS_Button} from '../../libs/hsButton'
+import {hsInput as HsInput} from '../../libs/hsInput'
+import {hsSubmit as HsSubmit, hsButton as HsButton} from '../../libs/hsButton'
 
 function MyProfilePresentational(props) {
 
@@ -10,34 +10,34 @@ function MyProfilePresentational(props) {
         <div className = "incontext myprofile">
             <form onSubmit={props.onSubmit}>
                 <div>
-                    <HS_Input placeholder="Imię"
+                    <HsInput placeholder="Imię"
                               width="28%"
                               name="firstName"
                               onChange={props.onChange}
-                              value={props.values.firstName}></HS_Input>
+                              value={props.values.firstName}></HsInput>
                 </div>
                 <div>
-                    <HS_Input placeholder="Nazwisko"
+                    <HsInput placeholder="Nazwisko"
                               width="28%"
                               name="lastName"
                               onChange={props.onChange}
-                              value={props.values.lastName}></HS_Input>
+                              value={props.values.lastName}></HsInput>
                 </div>
                 <div>
-                    <HS_Input placeholder="e-mail"
+                    <HsInput placeholder="e-mail"
                               width="28%"
                               name="email"
                               onChange={props.onChange}
-                              value={props.values.email}></HS_Input>
+                              value={props.values.email}></HsInput>
                 </div>
                 <div className="submit">
-                    <HS_Submit width="30%"></HS_Submit>
+                    <HsSubmit width="30%"></HsSubmit>
                 </div>
             </form>
             <div>
-                <HS_Button text="Zmień hasło"
+                <HsButton text="Zmień hasło"
                             width="29%"
-                            onClick={props.showPassPopup}></HS_Button>
+                            onClick={props.showPassPopup}></HsButton>
             </div>
         </div>
     );

@@ -48,7 +48,7 @@ function Register(props) {
             props.history.push('/login');   
             props.setRegisteredInit();     
         }
-      }, [props.isRegistered]);
+      }, [props]);
 
     const validateField = () => {
         let errorObj = {};

@@ -13,7 +13,7 @@ function Weather(props) {
 
   useEffect(() => {
      props.callGET(endpoint, "", errorMsg);
-  }, []);
+  }, [props]);
 
   return (
     <div>

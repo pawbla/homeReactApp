@@ -1,8 +1,4 @@
-import { connect } from "react-redux";
-import {enableProgressBar, disableProgressBar} from '../actions/';
-
 const apiUrl = `/api/v1/`;
-
 
 export const callGetJwtTokenApi = (user, password) => {
   const clientId = "clientid";
@@ -39,6 +35,24 @@ export const callGetApi = (endpoint, queryParams, token) => {
         }
         return response.json()          
     })
+}
+
+//Only GET for internal
+export const callInternalApi = (endpoint, queryParams) => {
+  const internalUrl = `/internal/api/v1/`;
+  const url = `${internalUrl}${endpoint}${queryParams}`;
+  return fetch(url, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error({status: response.status, text: response.statusText});
+      }
+      return response.json()          
+  })
 }
 
 export const callPostApi = (endpoint, body, token) => {

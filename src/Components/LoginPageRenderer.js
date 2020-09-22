@@ -2,8 +2,8 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import { LinearProgress } from '@material-ui/core';
 import { connect } from 'react-redux';
-import {hsInput as HS_Input} from '../libs/hsInput'
-import {hsSubmit as HS_Submit, hsButton as HS_Button} from '../libs/hsButton'
+import {hsInput as HsInput} from '../libs/hsInput'
+import {hsSubmit as HsSubmit, hsButton as HsButton} from '../libs/hsButton'
 
 
 const useStyles = makeStyles(theme => ({
@@ -55,29 +55,29 @@ function LoginPageRenderer(props) {
                 <h1 className={styles.title}>Home System Service</h1>
                 <form className={styles.form} onSubmit={props.handleLogin}>
                     <div>
-                        <HS_Input placeholder="Login"
+                        <HsInput placeholder="Login"
                               width="70%"
                               onChange={props.handleChange}
-                              value={props.values.text}></HS_Input>
+                              value={props.values.text}></HsInput>
                     </div>
                     <div>
-                        <HS_Input placeholder="Hasło"
+                        <HsInput placeholder="Hasło"
                               width="70%"
                               type="password"
                               onChange={props.handleChange}
-                              value={props.values.password}></HS_Input>
+                              value={props.values.password}></HsInput>
                     </div>
                     <div className={styles.buttons}>
-                        <HS_Submit width="74%" 
+                        <HsSubmit width="74%" 
                                    alt="true"
-                                   value="Login"></HS_Submit>
+                                   value="Login"></HsSubmit>
                     </div>
                 </form>
             </div>
             <div className={`${styles.box} ${styles.register}`} onClick={props.handleRegister}>
-                <HS_Button text="Zarejestruj użytkownika"
+                <HsButton text="Zarejestruj użytkownika"
                             alt="true"
-                            width="74%"></HS_Button>
+                            width="74%"></HsButton>
             </div>
         </div>
     ); 

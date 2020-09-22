@@ -2,8 +2,8 @@ import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Badge from '@material-ui/core/Badge';
+//import NotificationsIcon from '@material-ui/icons/Notifications';
+//import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import {IconButton} from '@material-ui/core';
 import {makeStyles } from '@material-ui/core/styles';
@@ -179,7 +179,7 @@ function MobileRightMenu() {
 }
 
 function Notifications() {
-  const styles = useStyles();
+  //const styles = useStyles();
   return(
     <div>
       {/*<IconButton className={styles.iconButton}>

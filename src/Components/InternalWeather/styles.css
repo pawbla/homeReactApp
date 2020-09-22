@@ -1,0 +1,32 @@
+.internalWeather {
+    border-radius: 10px;
+    background-image: linear-gradient(to bottom right, #05a8f6, #00ffaf);
+    max-width: 30%;
+    margin: auto;
+    text-align: center;
+    padding: 2px;
+    position: relative;
+    top: 25%;
+}
+
+.internalWeather > h3 {
+    margin: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.values {
+    text-align: right;
+    margin: 5px 7px;
+}
+
+.values > div > span:first-child {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    font-size: 35px;  
+}
+
+.values > div > span:last-child {
+    font-size: 20px;
+    vertical-align: top;
+    font-family: Arial, Helvetica, sans-serif;
+}
