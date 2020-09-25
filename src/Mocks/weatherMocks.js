@@ -76,7 +76,7 @@ export const weatherResp = {
         },
         "cloudCover": {
             "date": "04.08 21:44",
-            "isError": false,
+            "isError": true,
             "value": 100
         },
         "uvIndexColor": {
@@ -123,7 +123,7 @@ export const weatherResp = {
         },
         "rise": {
             "date": "04.08 21:44",
-            "isError": false,
+            "isError": true,
             "value": "06:46"
         }
     },

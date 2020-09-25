@@ -1,5 +1,6 @@
 import React from 'react';
 import {makeStyles } from '@material-ui/core/styles';
+import WarningIcon from '@material-ui/icons/Warning';
 
 import pic1  from '../assets/weatherIcons/01.png';
 import pic2  from '../assets/weatherIcons/02.png';
@@ -59,6 +60,11 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'space-between',
         margin: '8px 0px 10px 0px'
     },
+    title: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+    },
     picture: {
       textAlign: 'center',
       margin: '8px 0px 10px 0px',
@@ -68,52 +74,69 @@ const useStyles = makeStyles(theme => ({
       '& img': {
         marginBottom: '5px',
       }
+    },
+    warning: {
+      position: 'relative',
+      '& :hover + span': {
+        display: 'block',
+      }
+    },
+    tooltip: {
+      position: 'absolute',
+      bottom: '100%',
+      right: '20px',
+      padding: '3px',
+      border: '4px solid #ffcc00',
+      backgroundColor: '#FFFF99',
+      color: 'black',
+      width: '185px',
+      opacity: '0.9',
+      borderRadius: '4px',
+      display: 'none',
     }
   }));
-
-const pageTitle = "Pogoda";
 
 function WeatherRender(props) {
   
   const styles = useStyles();
 
-    const tempHumIn = [
+  const tempHumIn = [
       {name: "Temperatura", element: "temperature", unit: "\u00b0C", data: (props.datas.in)}, 
       {name: "Wilgotność", element: "humidity", unit: "%", data: (props.datas.in)}
+  ];
+
+  const tempHumOut = [
+      {name: "Temperatura", element: "temperature", unit: "\u00b0C", data: (props.datas.out)}, 
+      {name: "Wilgotność", element: "humidity", unit: "%", data: (props.datas.out)}
     ];
 
-    const tempHumOut = [
-        {name: "Temperatura", element: "temperature", unit: "\u00b0C", data: (props.datas.out)}, 
-        {name: "Wilgotność", element: "humidity", unit: "%", data: (props.datas.out)}
-      ];
+  const weather = [
+    {icon: "weatherIcon", element: "weatherText", data: (props.datas.weather)},
+    {name: "Ciśnienie", element: "pressure", unit: "hPa", data: (props.datas.weather)},
+    {name: "Prędkość wiatru", element: "windSpeed", unit: "km/h", data: (props.datas.weather)}, 
+    {name: "Kierunek wiatru", element: "windDirection", data: (props.datas.weather)}, 
+    {name: "Zachmurzenie", element: "cloudCover", unit: "%", data: (props.datas.weather)},
+    {name: "Pułap chmur", element: "ceiling", unit: "m", data: (props.datas.weather)}, 
+    {name: "Widoczność", element: "visibility", unit: "km", data: (props.datas.weather)}
+  ];
 
-    const weather = [
-      {icon: "weatherIcon", element: "weatherText", data: (props.datas.weather)},
-      {name: "Ciśnienie", element: "pressure", unit: "hPa", data: (props.datas.weather)},
-      {name: "Prędkość wiatru", element: "windSpeed", unit: "km/h", data: (props.datas.weather)}, 
-      {name: "Kierunek wiatru", element: "windDirection", data: (props.datas.weather)}, 
-      {name: "Zachmurzenie", element: "cloudCover", unit: "%", data: (props.datas.weather)},
-      {name: "Pułap chmur", element: "ceiling", unit: "m", data: (props.datas.weather)}, 
-      {name: "Widoczność", element: "visibility", unit: "km", data: (props.datas.weather)}
+  const airCondition = [
+    {name: "PM1", element: "pm1", data: (props.datas.airPolution)}, 
+    {name: "PM10", element: "pm10", element2: "pm10percent", unit2: "%", data: (props.datas.airPolution)}, 
+    {name: "PM2.5", element: "pm25", element2: "pm25percent", unit2: "%",data: (props.datas.airPolution)}, 
+    {name: "CAQI", element: "caqi", color: "caqiColor", data: (props.datas.airPolution)}
+  ];
+
+  const uvIndex = [
+    {name: "UV Index", element: "uvIndexValue", color: "uvIndexColor", data: (props.datas.weather)}, 
+    {name: "Opis", element: "uvIndexDescr", data: (props.datas.weather)}
+  ];
+
+  const dayLength = [
+      {name: "Wschód Słońca", element: "rise", data: (props.datas.sun)}, 
+      {name: "Zachód Słońca", element: "set", data: (props.datas.sun)},
+      {name: "Długość dnia", element: "dayLength", data: (props.datas.sun)}
     ];
-
-    const airCondition = [
-      {name: "PM1", element: "pm1", data: (props.datas.airPolution)}, 
-      {name: "PM10", element: "pm10", element2: "pm10percent", unit2: "%", data: (props.datas.airPolution)}, 
-      {name: "PM2.5", element: "pm25", element2: "pm25percent", unit2: "%",data: (props.datas.airPolution)}, 
-      {name: "CAQI", element: "caqi", color: "caqiColor", data: (props.datas.airPolution)}
-    ];
-
-    const uvIndex = [
-      {name: "UV Index", element: "uvIndexValue", color: "uvIndexColor", data: (props.datas.weather)}, 
-      {name: "Opis", element: "uvIndexDescr", data: (props.datas.weather)}
-    ];
-
-    const dayLength = [
-        {name: "Wschód Słońca", element: "rise", data: (props.datas.sun)}, 
-        {name: "Zachód Słońca", element: "set", data: (props.datas.sun)},
-        {name: "Długość dnia", element: "dayLength", data: (props.datas.sun)}
-      ];
 
   return (
     <div>
@@ -134,40 +157,59 @@ export default WeatherRender;
 
 function WeatherComponent(props) {
 
-    const styles = useStyles();
+  const styles = useStyles();
 
-    let picNo;
-    let newColor;
-    let newFontWeight;
-  
-    const textItem = (item) => (
-        newColor = item.color ? item.data[item.color]["value"] : styles.box.color,
-        newFontWeight = item.color ? "bold" : "normal",
-        <div className={styles.text} style={{color: newColor, fontWeight: newFontWeight}}>
-            <span>{item.name}</span>
-            <span>{item.data[item.element]["value"]}{item.unit ? item.unit : ""}{item.data[item.element2] ? " / " + item.data[item.element2]["value"] : ""}{item.unit2 ? item.unit2 : ""}</span>
-        </div>
-    );
-  
-    const pictureItem = (item) => (
-        picNo = item.data[item.icon]["value"],
-        //add leading zeros when picNo < 10
-        picNo = picNo <= 9 ? "0"+picNo : picNo,
-        <div className={styles.picture}>
-            <div>
-                <img src={require(`../assets/weatherIcons/${picNo}.png`)} alt="Obraz jest niedostępny  "/>
-            </div>
-            <span>{item.data[item.element]["value"]}</span>
-        </div>
-    );
-  
-    const listOfItems = props.rows.map(item => 
-      item.icon == null ? textItem(item) : pictureItem(item));
-  
-    return (
-      <div className={styles.box}>
-        <h3>{props.title}</h3>
-          {listOfItems}
+  let picNo;
+  let newColor;
+  let newFontWeight;
+  let lastCorrectMeasurement;
+
+  const textItem = (item) => (
+      newColor = item.color ? item.data[item.color]["value"] : styles.box.color,
+      newFontWeight = item.color ? "bold" : "normal",
+      <div className={styles.text} style={{color: newColor, fontWeight: newFontWeight}}>
+          <span>{item.name}</span>
+          <span>{item.data[item.element]["value"]}{item.unit ? item.unit : ""}{item.data[item.element2] ? " / " + item.data[item.element2]["value"] : ""}{item.unit2 ? item.unit2 : ""}</span>
       </div>
-    )
+  );
+  
+  const pictureItem = (item) => (
+      picNo = item.data[item.icon]["value"],
+      //add leading zeros when picNo < 10
+      picNo = picNo <= 9 ? "0"+picNo : picNo,
+      <div className={styles.picture}>
+          <div>
+              <img src={require(`../assets/weatherIcons/${picNo}.png`)} alt="Obraz jest niedostępny  "/>
+          </div>
+          <span>{item.data[item.element]["value"]}</span>
+      </div>
+  );
+
+  const isErrorF = () => {
+    var res = false;
+    props.rows.forEach(row =>{
+      if(row.data[row.element].isError) {
+        res = true;
+        lastCorrectMeasurement = row.data[row.element].date;
+      }
+    });
+    return res;
+  }
+
+  const warning = () => (
+    <div className={styles.warning}>
+      <WarningIcon style={{ color: '#ffcc00' }} />
+      <span className={styles.tooltip}>Błąd czujnika. <br /> Ostatni poprawny pomiar:<br /> {lastCorrectMeasurement}</span>
+    </div>
+  );
+
+  const listOfItems = props.rows.map(item => 
+    item.icon == null ? textItem(item) : pictureItem(item));
+
+  return (
+    <div className={styles.box}>
+      <div className={styles.title}><h3>{props.title}</h3>{isErrorF() ? warning()  : ""}</div>
+        {listOfItems}
+    </div>
+  )
 }
