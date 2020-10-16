@@ -199,7 +199,7 @@ function WeatherComponent(props) {
   const warning = () => (
     <div className={styles.warning}>
       <WarningIcon style={{ color: '#ffcc00' }} />
-      <span className={styles.tooltip}>Błąd czujnika. <br /> Ostatni poprawny pomiar:<br /> {lastCorrectMeasurement}</span>
+      <span className={styles.tooltip}>Błąd odczytu danych. <br /> Ostatni poprawny odczyt:<br /> {lastCorrectMeasurement}</span>
     </div>
   );
 
