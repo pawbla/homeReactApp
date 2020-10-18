@@ -1,0 +1,47 @@
+.popup_in {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 35%;
+    right: 35%;
+    top: 25%;
+    bottom: 25%;
+    width: 350px;
+    height:350px;
+    margin: auto;
+    background: #f8f8ff;
+    border-radius: 15px;
+    border: 3px #05A8F5 solid;
+    padding: 8px;
+    text-align: center;
+}
+
+.popup_in > div:first-child {
+    padding-bottom: 5px;
+    font-weight: bold;
+    color: #056DF5;
+    font-family: "Lucida Console", Courier, monospace;
+    font-size: 20px;
+}
+
+.popup_in div:not(:first-child):not(:last-child) {
+    text-align: left;
+    font-size: 17px;
+    padding-top: 5px;
+}
+
+.popup_in div:not(:first-child):not(:last-child) > span:first-child {
+    font-weight: bold;
+}
+
+.popup_in > div:last-child {
+    margin-top: auto;
+}
+
+.response_ok {
+    color: green;
+}
+
+.response_nok {
+    color: red;
+}

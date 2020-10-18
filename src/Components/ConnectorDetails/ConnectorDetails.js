@@ -1,20 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import ConnectorDetailsPresentational from './ConnectorDetailsPresentational';
 import MainSection from '../MainSection/MainSection';
-import DetailsModal from './DetailsModal';
-
-//ONLY FOR TEST PURPOSE !!!!!!!!!!!!!!!!
-import {connectorDetailsResp} from '../../Mocks/connectorDetailsMock';
+import { connect } from "react-redux";
+import {callGET} from '../../actions/';
 
 const pageTitle = "Czujniki";
 
-function ConnectorDetails() {
+function ConnectorDetails(props) {
 
+    const endpoint = 'connectors';
+    const errorMsg = "Nie można pobrać danych ze strony.";
+  
+    useEffect(() => {
+       props.callGET(endpoint, "", errorMsg);
+    }, [props]);
     return (
         <div>
-            <ConnectorDetailsPresentational datas={connectorDetailsResp} />
+            {props.reqId === endpoint ? (<ConnectorDetailsPresentational datas={props.datas} />) : (<div></div>)}
         </div>
     );
 }
 
-export default MainSection((ConnectorDetails), pageTitle);
+const mapStateToProps = (state) => {
+
+    return {
+      datas: state.fetchedData.payload,
+      reqId: state.fetchedData.id
+    }
+};
+  
+const mapDispatchToProps = {callGET};
+  
+
+export default MainSection(connect(mapStateToProps, mapDispatchToProps)(ConnectorDetails), pageTitle);

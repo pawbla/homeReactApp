@@ -47,19 +47,3 @@
     display: flex;
     align-items: center;
 }
-
-
-.popup_in {
-    position: absolute;
-    left: 35%;
-    right: 35%;
-    top: 25%;
-    bottom: 25%;
-    width: 350px;
-    height:350px;
-    margin: auto;
-    background: #f8f8ff;
-    border-radius: 15px;
-    border: 3px #05A8F5 solid;
-    text-align: center;
-}

@@ -52,10 +52,9 @@ export function mockedBackend() {
                     console.log("== MOCK == Mocked response for users list request ==")
                     resolve({ ok: true, json: () => usersList});
                 //Mock for connector details
-                if (url.endsWith('connectors')) {
+                } else if (url.endsWith('connectors')) {
                     console.log("== MOCK == Mocked response for weather. Loged as USER. Status: OK");
                     resolve({ ok: true, json: () => connectorDetailsResp});
-                }
                 } else {
                     console.log("== MOCK == Uncovered request, status: NOK. URL: " + url);
                     reject('Response from mock - Incorrect datas');

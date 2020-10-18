@@ -3,28 +3,28 @@ import './styles.css';
 import {IconButton} from '@material-ui/core';
 import WarningIcon from '@material-ui/icons/Warning';
 import InfoIcon from '@material-ui/icons/Info';
-import Modal from '../../libs/modal'
+import Modal from '../../libs/modal';
+import ConnectorDetailPopup from './ConnectorDetailPopup';
 
 function ConnectorDetailsPresentational(props) {
-    const childRef = useRef();
-
-    const click = () => {
-        childRef.current.openPopup()
-    }
-
     return (
         <div className = "incontext">
             <ul className="details">
                 {props.datas.connectors.map((item, key) => 
-                    <Item item={item} key={key}/> 
+                    <Item item={item} key={key} /> 
                 )}
-            </ul>
-            <Modal component={Popup} ref={childRef} text={"ziemniaki:"}/>
+            </ul> 
         </div>
     );
 }
 
 function Item(props) {
+    const childRef = useRef();
+
+    const showPopup = () => {
+        childRef.current.openPopup()
+    }
+
     return (
         <li className="item">
             <h2>{props.item.name}</h2>
@@ -43,20 +43,13 @@ function Item(props) {
                     aria-expanded="true"
                     aria-controls="mobileMenu" 
                     aria-haspopup="true"
-                    onClick={props.showPopup}>
+                    onClick={showPopup}>
                     <InfoIcon color="primary" fontSize="large"/>
                 </IconButton>
             </div>
+            <Modal component={ConnectorDetailPopup} ref={childRef} data={props.item}/>
         </li>
     );
-}
-
-function Popup(props) {
-  return(
-      <div className="popup_in">
-          <button onClick={props.hidePopup}>{props.text}</button>
-      </div>
-  )  
 }
 
 export default ConnectorDetailsPresentational;

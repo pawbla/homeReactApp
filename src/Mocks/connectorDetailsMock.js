@@ -16,7 +16,7 @@ export const connectorDetailsResp = {
             "name": "accuweather",
             "link": "https://www.accuweather.com/",
             "errorMessage": "Test error message",
-            "responseCode": 200
+            "responseCode": 400
         },
         {
             "date": "10.08 21:53",
