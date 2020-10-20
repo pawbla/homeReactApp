@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import MyProfilePresentational from './MyProfilePresentational';
-import Modal from './Modal';
+import MyProfilePopup from './MyProfilePopup';
 import MainSection from '../MainSection/MainSection';
 import { connect } from "react-redux";
-import {callGET, callPUT} from '../../actions/';
+import {callGET, callPUT} from '../../actions';
+import Modal from '../../libs/modal';
 
 const pageTitle = "Mój profil";
 const getUserEndpoint = 'user';
@@ -17,7 +18,11 @@ function MyProfile(props) {
     const initState = {firstName: "", lastName: "", email: ""};
 
     const [values, setText] = useState(initState);
-    const [isPopup, togglePopup] = useState(false);
+    const childRef = useRef();
+
+    const showPopup = () => {
+        childRef.current.openPopup();
+    }
 
     useEffect(() => {
       onEnter();
@@ -39,19 +44,14 @@ function MyProfile(props) {
       window.location.reload(); 
     }
 
-    const showHidePopup = () => {
-      togglePopup(!isPopup);
-    }
-
     return (
         <div>
             {props.reqId === getUserEndpoint ? <MyProfilePresentational datas={props.datas}
                                       onChange={onChange}
                                       values={values} 
                                       onSubmit={onSubmit}
-                                      showPassPopup={showHidePopup}/> : <div></div>}
-            {isPopup ? <Modal closePopup={showHidePopup}
-                              user_id={values.user_id}/> : ""}
+                                      showPassPopup={showPopup} /> : <div></div>}
+            <Modal component={MyProfilePopup} ref={childRef}/>
         </div>
     );
 }

@@ -1,12 +1,13 @@
 import React, {useState}  from 'react';
-import ModalPresentational from './ModalPresentational';
+
+import MyProfilePopupPresentational from './MyProfilePopupPresentational';
 import { connect } from "react-redux";
-import {callPUT} from '../../actions/';
+import {callPUT} from '../../actions';
 
 const changePassEndpoint = "changepass";
 const errorMessage = "Nie można zmienić hasła.";
 
-function Modal(props) {
+function MyProfilePopup(props) {
 
     const initState = {oldPass: "", newPass: "", newPassRepeate: ""};
     const errorInit = {oldPass: false, newPass: false, newPassRepeate: false};
@@ -42,7 +43,7 @@ function Modal(props) {
             setText(initState);
             return;
         }
-        props.closePopup();
+        props.hidePopup();
     }
 
     const checkEmptyField = () => {
@@ -69,14 +70,17 @@ function Modal(props) {
     }
 
     return (
-        <ModalPresentational closePopup={props.closePopup}
-                             changePassowrd={changePassowrd}
+        <div>
+            <MyProfilePopupPresentational changePassowrd={changePassowrd}
                              values={values}
                              errors={errors}
-                             onChange={onChange}/>
+                             onChange={onChange} 
+                             hidePopup={props.hidePopup}/>
+                             
+        </div>
     )
 }
 
 const mapDispatchToProps = {callPUT};
 
-export default connect(null, mapDispatchToProps)(Modal);
+export default connect(null, mapDispatchToProps)(MyProfilePopup);
