@@ -1,7 +1,15 @@
 .main_header {
+    display: flex;
+    flex-flow: row nowrap;
     box-shadow: 0 0 5px gray;
     padding: 1px 15px;
     margin: 0px 5px;
+}
+
+.refresh {
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .main_content {

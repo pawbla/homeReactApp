@@ -24,11 +24,13 @@ function ManageUsers(props) {
     }
 
     return (
-        <div>
-            {props.reqId === usersEndpoint ?  
-            <ManageUsersPresentational users={props.datas} 
+        <div>  
+            <MainSection component={ManageUsersPresentational} 
+                reqId = {props.reqId}
+                endpoint = {usersEndpoint}
+                users={props.datas} 
+                title={pageTitle}
                 onDelete={onDelete}/>
-            : (<div></div>)}
         </div>
     );
 }
@@ -43,4 +45,4 @@ const mapStateToProps = (state) => {
   
 const mapDispatchToProps = {callGET, callDELETE};
 
-export default MainSection(connect(mapStateToProps, mapDispatchToProps)(ManageUsers), pageTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUsers);

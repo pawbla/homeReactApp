@@ -46,11 +46,16 @@ function MyProfile(props) {
 
     return (
         <div>
-            {props.reqId === getUserEndpoint ? <MyProfilePresentational datas={props.datas}
-                                      onChange={onChange}
-                                      values={values} 
-                                      onSubmit={onSubmit}
-                                      showPassPopup={showPopup} /> : <div></div>}
+            <MainSection
+              reqId = {props.reqId}
+              endpoint = {getUserEndpoint}
+              component={MyProfilePresentational}
+              title={pageTitle}
+              datas={props.datas}
+              onChange={onChange}
+              values={values} 
+              onSubmit={onSubmit}
+              showPassPopup={showPopup} />
             <Modal component={MyProfilePopup} ref={childRef}/>
         </div>
     );
@@ -68,4 +73,4 @@ const mapStateToProps = (state) => {
   
   const mapDispatchToProps = {callGET, callPUT};
 
-export default MainSection(connect(mapStateToProps, mapDispatchToProps)(MyProfile), pageTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(MyProfile);

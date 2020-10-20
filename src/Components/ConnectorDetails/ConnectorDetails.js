@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import ConnectorDetailsPresentational from './ConnectorDetailsPresentational';
 import MainSection from '../MainSection/MainSection';
 import { connect } from "react-redux";
@@ -15,8 +15,12 @@ function ConnectorDetails(props) {
        props.callGET(endpoint, "", errorMsg);
     }, [props]);
     return (
-        <div>
-            {props.reqId === endpoint ? (<ConnectorDetailsPresentational datas={props.datas} />) : (<div></div>)}
+        <div><MainSection
+                reqId = {props.reqId}
+                endpoint = {endpoint}
+                component={ConnectorDetailsPresentational}
+                title={pageTitle} 
+                datas={props.datas} />
         </div>
     );
 }
@@ -32,4 +36,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {callGET};
   
 
-export default MainSection(connect(mapStateToProps, mapDispatchToProps)(ConnectorDetails), pageTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectorDetails);

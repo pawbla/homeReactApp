@@ -15,9 +15,18 @@ function Weather(props) {
      props.callGET(endpoint, "", errorMsg);
   }, [props]);
 
+  const refresh = () => {
+    props.callGET(endpoint, "", errorMsg);
+  }
+
   return (
     <div>
-      {props.reqId === endpoint ? (<WeatherRender datas={props.datas} />) : (<div></div>)}
+      <MainSection component={WeatherRender} 
+        reqId = {props.reqId}
+        endpoint = {endpoint}
+        refresh = {refresh}
+        datas={props.datas} 
+        title={pageTitle} />
     </div>
   );
 }
@@ -32,4 +41,4 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {callGET};
 
-export default MainSection(connect(mapStateToProps, mapDispatchToProps)(Weather), pageTitle);
+export default connect(mapStateToProps, mapDispatchToProps)(Weather);

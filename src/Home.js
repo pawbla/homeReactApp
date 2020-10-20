@@ -6,11 +6,17 @@ const pageTitle = "Home";
 class Home extends React.Component {
   render() {
     return (
-      <div>
-        asdsad
-      </div>
+ <MainSection component={HomePresentational} title={pageTitle} />
     );
   }
  }
 
- export default MainSection(Home, pageTitle);
+ export default Home;
+
+ function HomePresentational() {
+  return (
+    <div>
+      asdsad
+    </div>
+  )  
+ }
