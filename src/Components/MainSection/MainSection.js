@@ -14,7 +14,7 @@ function MainSection({component: Component, ...props}) {
                     <IconButton
                         edge="start"
                         color="inherit"
-                        size="large"
+                        size="medium"
                         aria-expanded="true"
                         aria-controls="mobileMenu" 
                         aria-haspopup="true"

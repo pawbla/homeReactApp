@@ -129,7 +129,7 @@ function WeatherRender(props) {
 
   const uvIndex = [
     {name: "UV Index", element: "uvIndexValue", color: "uvIndexColor", data: (props.datas.weather)}, 
-    {name: "Opis", element: "uvIndexDescr", data: (props.datas.weather)}
+    {name: "Opis", element: "uvIndexDescription", data: (props.datas.weather)}
   ];
 
   const dayLength = [
@@ -204,7 +204,8 @@ function WeatherComponent(props) {
   );
 
   const listOfItems = props.rows.map(item => 
-    item.icon == null ? textItem(item) : pictureItem(item));
+    item.icon == null ? textItem(item) : pictureItem(item)
+    );
 
   return (
     <div className={styles.box}>

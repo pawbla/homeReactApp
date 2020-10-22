@@ -52,9 +52,9 @@ export const weatherResp = {
         "ceiling": {
             "date": "04.08 21:44",
             "isError": false,
-            "value": 457
+            "value": "457"
         },
-        "uvIndexDescr": {
+        "uvIndexDescription": {
             "date": "04.08 21:44",
             "isError": false,
             "value": "Średnia"
@@ -62,12 +62,12 @@ export const weatherResp = {
         "windDirectionDeg": {
             "date": "04.08 21:44",
             "isError": false,
-            "value": 45
+            "value": "45"
         },
         "weatherIcon": {
             "date": "04.08 21:44",
             "isError": false,
-            "value": 7
+            "value": "7"
         },
         "visibility": {
             "date": "04.08 21:44",
@@ -77,7 +77,7 @@ export const weatherResp = {
         "cloudCover": {
             "date": "04.08 21:44",
             "isError": true,
-            "value": 100
+            "value": "100"
         },
         "uvIndexColor": {
             "date": "04.08 21:44",
