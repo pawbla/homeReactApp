@@ -1,5 +1,5 @@
 import {callGetApi, callPostApi, callPutApi, 
-  callDeleteApi, callGetJwtTokenApi, callPostApiNoAuth} from '../libs/callRestApi';
+  callDeleteApi, callGetJwtTokenApi} from '../libs/callRestApi';
 
 const setJwtTokenFetched = (authResp) => ({
   type: 'FETCHED_JWT_TOKEN_SUCCESS',
@@ -82,7 +82,7 @@ export const registerUser = (body) => {
   return async (dispatch, getState) => {
     const endpoint = 'register';
     dispatch(enableProgressBar());
-    await callPostApiNoAuth(endpoint, body)
+    await callPostApi(endpoint, body)
       .then(() => {dispatch(setRegisteredSuccess())})
       .catch(error => {
         alert("Nie można zapisać danych użytkownika. \n" + error);

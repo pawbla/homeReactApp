@@ -57,12 +57,18 @@ export const callInternalApi = (endpoint, queryParams) => {
 
 export const callPostApi = (endpoint, body, token) => {
   const url = `${apiUrl}${endpoint}`;
+
+  let header =  {
+    "Content-Type": "application/json"
+  }
+  if (token) {
+    header['Authorization'] = 'Bearer ' + token;
+  }
+ 
+
   return fetch(url, {
       method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        'Authorization': 'Bearer ' + token,
-      },
+      headers: header,
       body: JSON.stringify(body)
     })
     .then(response => {
