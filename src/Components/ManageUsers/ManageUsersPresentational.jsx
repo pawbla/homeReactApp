@@ -3,6 +3,7 @@ import './styles.css';
 import {IconButton} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import {hsInput as HsInput} from '../../libs/hsInput';
 
 function ManageUsersPresentational(props) {
     const [searchStr, setText] = useState("");
@@ -23,8 +24,13 @@ function ManageUsersPresentational(props) {
 
     return(
         <div className = "incontext">
-            <input type="text" onChange={handleChange}
-                             value={searchStr} ></input>
+            <div className="usersSearch">
+                <HsInput type="text" 
+                        placeholder="Szukaj"
+                        onChange={handleChange}
+                        value={searchStr}
+                        width="250px"></HsInput>
+            </div>
             <ul className="users">
                 {props.users.users.filter(filter).sort(compareUsernames).map((item, index) => 
                     <Item item={item} key={index} />

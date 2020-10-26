@@ -1,5 +1,5 @@
 .users {
-    padding: 10px 30px;
+    padding: 5px 30px;
 }
 
 .users .item {
@@ -40,4 +40,11 @@
 
 .username > span:first-child {
     font-weight: bold;
+}
+
+.usersSearch {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-right: 30px;
 }

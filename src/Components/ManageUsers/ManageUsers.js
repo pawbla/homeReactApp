@@ -15,8 +15,12 @@ const pageTitle = "Użytkownicy";
 function ManageUsers(props) {
 
     useEffect(() => {
-        props.callGET(usersEndpoint, "", errorMsg)
+        props.callGET(usersEndpoint, "", errorMsg);
      }, []);
+
+    const refresh = () => {
+        props.callGET(usersEndpoint, "", errorMsg);
+    }
 
     /*
     
@@ -32,6 +36,7 @@ function ManageUsers(props) {
                 reqId = {props.reqId}
                 endpoint = {usersEndpoint}
                 users={props.datas} 
+                refresh = {refresh}
                 title={pageTitle}/>
         </div>
     );
