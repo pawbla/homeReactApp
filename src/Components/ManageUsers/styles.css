@@ -1,0 +1,43 @@
+.users {
+    padding: 10px 30px;
+}
+
+.users .item {
+    padding: 2px 15px;
+    height: 50px;
+    list-style-type: none;
+    border-top: 2px #056DF5 solid;
+    display: flex;
+    align-items: center;
+    color: #056DF5;
+}
+
+.users .item.disabled {
+    color: #4A4949;
+}
+
+.users .item:last-child {
+    border-bottom: 2px #056DF5 solid;
+}
+
+.users .item:hover {
+    background-color: #D3D3D3;
+}
+
+.users .item > h2 {
+    width: 220px;
+    font-family: "Lucida Console", Courier, monospace;;
+}
+
+.users .item .edit {
+    margin-right: 50px;
+}
+
+.username {
+    display: flex;
+    flex-direction: column;
+}
+
+.username > span:first-child {
+    font-weight: bold;
+}

@@ -10,7 +10,7 @@ export const usersList =  {users: [
     },
     {
         user_id: "2",
-        username: "UserName2",
+        username: "HUserName2",
         enabled: false,
         firstName: "BFirst",
         lastName: "BLast",
@@ -18,15 +18,15 @@ export const usersList =  {users: [
     },
     {
         user_id: "3",
-        username: "UserName3",
+        username: "EUserName3",
         enabled: false,
         firstName: "CFirst",
         lastName: "CLast",
-        role: "ROLE_USER"
+        role: "ROLE_ADMIN"
     },
     {
         user_id: "4",
-        username: "UserName4",
+        username: "DUserName4",
         enabled: true,
         firstName: "DFirst",
         lastName: "DLast",
