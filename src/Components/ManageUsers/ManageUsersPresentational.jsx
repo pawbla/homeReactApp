@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import './styles.css';
 import {IconButton} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import {hsInput as HsInput} from '../../libs/hsInput';
+import Modal from '../../libs/modal';
+import DeletePopup from './DeletePopup';
 
 function ManageUsersPresentational(props) {
     const [searchStr, setText] = useState("");
@@ -41,6 +43,12 @@ function ManageUsersPresentational(props) {
 }
 
 function Item(props) {
+    const childRef = useRef();
+
+    const showDeletePopup = () => {
+        childRef.current.openPopup()
+    }
+
     return (
         <li className={props.item.enabled ? "item" : "item disabled"}>
             <h2>{props.item.username}</h2>
@@ -65,11 +73,12 @@ function Item(props) {
                     size="small"
                     aria-expanded="true"
                     aria-controls="mobileMenu" 
-                    aria-haspopup="true">
+                    aria-haspopup="true"
+                    onClick={showDeletePopup}>
                     <DeleteIcon color="primary" fontSize="large"/>
                 </IconButton>
             </div>
-
+            <Modal component={DeletePopup} ref={childRef} user_id={props.item.user_id}/>
 
         </li>
     )

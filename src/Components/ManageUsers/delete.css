@@ -1,0 +1,29 @@
+.deleteUserPopup {
+    position: absolute;
+    left: 35%;
+    right: 35%;
+    top: 25%;
+    bottom: 25%;
+    width: 350px;
+    height:250px;
+    margin: auto;
+    background: #f8f8ff;
+    border-radius: 15px;
+    border: 3px #05A8F5 solid;
+    padding: 8px;
+    text-align: center;
+}
+
+.deleteUserPopup > div {
+    padding: 10px;
+}
+
+.deleteUserPopup > div:last-child {
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteUserPopup > div > h2 {
+    color: red;
+}

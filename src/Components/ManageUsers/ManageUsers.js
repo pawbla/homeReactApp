@@ -5,11 +5,7 @@ import {callGET, callDELETE} from '../../actions/';
 import MainSection from '../MainSection/MainSection';
 
 const usersEndpoint = 'users';
-const deleteEndpoint = 'deleteUser';
-
 const errorMsg = "Nie można pobrać danych ze strony.";
-const deleteErrMsg = "Wystąpił problem podczas usuwania użytkownika";
-
 const pageTitle = "Użytkownicy";
 
 function ManageUsers(props) {
@@ -21,14 +17,6 @@ function ManageUsers(props) {
     const refresh = () => {
         props.callGET(usersEndpoint, "", errorMsg);
     }
-
-    /*
-    
-    
-    const onDelete = async (id) => {
-        await props.callDELETE(deleteEndpoint, id, deleteErrMsg);
-        window.location.reload(); 
-    }*/
 
     return (
         <div>  
