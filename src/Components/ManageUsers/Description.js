@@ -21,12 +21,12 @@ function Description(props) {
      }, []);
 
     const onChange = (event) => {
+        console.log("aaaaas")
         if (event.target.name === 'role') {
             setValues({...values, [event.target.name]: {role: event.target.value}});
         } else {
             setValues({...values, [event.target.name]: event.target.value});
-        }
-        
+        }  
     }
 
     const toggleCheck = () => {

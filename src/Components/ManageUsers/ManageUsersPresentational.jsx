@@ -6,6 +6,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import {hsInput as HsInput} from '../../libs/hsInput';
 import Modal from '../../libs/modal';
 import DeletePopup from './DeletePopup';
+import EditPopup from './EditPopup';
 
 function ManageUsersPresentational(props) {
     const [searchStr, setText] = useState("");
@@ -43,10 +44,15 @@ function ManageUsersPresentational(props) {
 }
 
 function Item(props) {
-    const childRef = useRef();
+    const deleteRef = useRef();
+    const editRef = useRef();
 
     const showDeletePopup = () => {
-        childRef.current.openPopup()
+        deleteRef.current.openPopup()
+    }
+
+    const showEditPopup = () => {
+        editRef.current.openPopup()
     }
 
     return (
@@ -64,7 +70,8 @@ function Item(props) {
                     aria-expanded="true"
                     aria-controls="mobileMenu" 
                     aria-haspopup="true"
-                    style={{marginRight: '20px'}}>
+                    style={{marginRight: '20px'}}
+                    onClick={showEditPopup}>
                     <EditIcon color="primary" fontSize="large"/>
                 </IconButton>
                 <IconButton
@@ -78,7 +85,8 @@ function Item(props) {
                     <DeleteIcon color="primary" fontSize="large"/>
                 </IconButton>
             </div>
-            <Modal component={DeletePopup} ref={childRef} user_id={props.item.user_id}/>
+            <Modal component={EditPopup} ref={editRef} item={props.item}/>
+            <Modal component={DeletePopup} ref={deleteRef} user_id={props.item.user_id}/>
 
         </li>
     )

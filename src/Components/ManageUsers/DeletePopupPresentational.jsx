@@ -1,6 +1,6 @@
 import React from 'react';
 import './delete.css';
-import {hsButton as HsButton} from '../../libs/hsButton'
+import {hsButton as HsButton} from '../../libs/hsButton';
 
 export default function DeletePopupPresentational(props) {
     return (

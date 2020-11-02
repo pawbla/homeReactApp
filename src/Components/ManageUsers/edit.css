@@ -1,0 +1,39 @@
+.editUserPopup {
+    position: absolute;
+    left: 35%;
+    right: 35%;
+    top: 25%;
+    bottom: 25%;
+    width: 350px;
+    height:300px;
+    margin: auto;
+    background: #f8f8ff;
+    border-radius: 15px;
+    border: 3px #05A8F5 solid;
+    padding: 8px;
+    text-align: center;
+}
+
+.editUserPopup > form {
+    display: flex;
+    flex-direction: column;
+    height: 75%;
+    padding: 2px 10px;
+}
+
+.editUserPopup > form > div:last-child {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.editUserPopup > form > .boxes {
+    display: flex;
+    flex-direction: row;
+}
+
+.editUserPopup > form > .boxes > div {
+    margin-left: 5px;
+}
