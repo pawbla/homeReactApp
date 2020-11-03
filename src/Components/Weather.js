@@ -13,7 +13,7 @@ function Weather(props) {
 
   useEffect(() => {
      props.callGET(endpoint, "", errorMsg);
-  }, [props]);
+  }, []);
 
   const refresh = () => {
     props.callGET(endpoint, "", errorMsg);

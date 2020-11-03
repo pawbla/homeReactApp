@@ -13,7 +13,7 @@ function ConnectorDetails(props) {
   
     useEffect(() => {
        props.callGET(endpoint, "", errorMsg);
-    }, [props]);
+    }, []);
     return (
         <div><MainSection
                 reqId = {props.reqId}
