@@ -1,8 +1,11 @@
+import getConfigData from './configData';
 const apiUrl = `/api/v1/`;
 
+;
+
 export const callGetJwtTokenApi = (user, password) => {
-  const clientId = "clientid";
-  const clientSecret = "clientsectet";
+  const clientId = getConfigData("clientId");
+  const clientSecret = getConfigData("clientsectet");
   const loginUrl = `/oauth/token`;
   return fetch(loginUrl, {
       method: 'POST',
