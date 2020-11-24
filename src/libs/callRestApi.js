@@ -1,11 +1,9 @@
 import getConfigData from './configData';
 const apiUrl = `/api/v1/`;
 
-;
-
 export const callGetJwtTokenApi = (user, password) => {
   const clientId = getConfigData("clientId");
-  const clientSecret = getConfigData("clientsectet");
+  const clientSecret = getConfigData("clientSecret");
   const loginUrl = `/oauth/token`;
   return fetch(loginUrl, {
       method: 'POST',
@@ -17,7 +15,7 @@ export const callGetJwtTokenApi = (user, password) => {
     })
     .then(response => {
         if (!response.ok) {
-          throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+          throw new Error({msg: `Received response code: ${response.status} ${response.statusText}`, st: "qe"});
         }
         return response.json()          
     })
@@ -34,7 +32,7 @@ export const callGetApi = (endpoint, queryParams, token) => {
       })
       .then(response => {
         if (!response.ok) {
-          throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+          throw new Error(errorObj(response.status, response.statusText));
         }
         return response.json()          
     })
@@ -76,7 +74,7 @@ export const callPostApi = (endpoint, body, token) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+        throw new Error(errorObj(response.status, response.statusText));
       }
       return response.json()          
   })
@@ -93,7 +91,7 @@ export const callPostApiNoAuth = (endpoint, body) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+        throw new Error(errorObj(response.status, response.statusText));
       }
       return response.json()          
   })
@@ -111,7 +109,7 @@ export const callPutApi = (endpoint, param, body, token) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+        throw new Error(errorObj(response.status, response.statusText));
       }                
   })
 }
@@ -127,8 +125,17 @@ export const callDeleteApi = (endpoint, deleteParam, token) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(`Received response code: ${response.status} ${response.statusText}`);
+        throw new Error(errorObj(response.status, response.statusText));
       }
       return response.json()          
   })
+}
+
+const errorObj = (status, text) => {
+  console.log("sdad = " + status + " adasd " + text)
+  return {
+    message: `Received response code: ${status} ${text}`,
+    respCode: status,
+    respMsg: text
+  };
 }

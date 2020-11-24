@@ -52,7 +52,7 @@ const fetchJwtToken = (user, password) => {
   }
 }
 
-const fetchUserData = (user) => {
+export const fetchUserData = (user) => {
   return async (dispatch, getState) => {
     const queryParams = `?login=${user}`;
     const endpoint = 'user';
@@ -60,7 +60,7 @@ const fetchUserData = (user) => {
       .then(json => dispatch(setLoggedUserFetched(json)))
       .catch(error => {
         dispatch(logOutUserOrError());
-        alert("Nie można pobrać danych użytkownika. \n" + error);
+        alert("Nie można pobrać danych użytkownika. \n" + error.message);
       });
   }
 }
@@ -85,7 +85,7 @@ export const registerUser = (body) => {
     await callPostApi(endpoint, body)
       .then(() => {dispatch(setRegisteredSuccess())})
       .catch(error => {
-        alert("Nie można zapisać danych użytkownika. \n" + error);
+        alert("Nie można zapisać danych użytkownika. \n" + error.message);
         dispatch(setRegisteredFail());
       });
     dispatch(disableProgressBar());
@@ -102,7 +102,10 @@ export const callGET = (endpoint, query, errorMessage) => {
         return json;
       })
       .catch(error => {
-        alert(`${errorMessage} \n ${error}`); 
+        if (error.status === "401") {
+          dispatch(logOutUserOrError());
+        }
+        alert(`${errorMessage} \n ${error.message}`); 
         dispatch(disableProgressBar())});
   } 
 }
@@ -117,7 +120,10 @@ export const callPOST = (endpoint, body, errorMessage) => {
       })
       .catch(error => {
         dispatch(disableProgressBar());
-        alert(`${errorMessage} \n ${error}`);
+        if (error.status === "401") {
+          dispatch(logOutUserOrError());
+        }
+        alert(`${errorMessage} \n ${error.message}`);
         return {hasError: true};
       });
   } 
@@ -133,7 +139,10 @@ export const callPUT = (endpoint, param, body, errorMessage) => {
       })
       .catch(error => {
         dispatch(disableProgressBar());
-        alert(`${errorMessage} \n ${error}`);
+        if (error.status === "401") {
+          dispatch(logOutUserOrError());
+        }
+        alert(`${errorMessage} \n ${error.message}`);
         return {hasError: true};
       });
   }   
@@ -144,8 +153,12 @@ export const callDELETE = (endpoint, deleteParam, errorMessage) => {
     dispatch(enableProgressBar());
     await callDeleteApi(endpoint, deleteParam, getState().loggedUser.jwtToken)
       .then()
-      .catch(error => 
-        alert(`${errorMessage} \n ${error}`));
+      .catch(error => {
+        if (error.status === "401") {
+          dispatch(logOutUserOrError());
+          alert(`${errorMessage} \n ${error.message}`)
+        }
+      });
     dispatch(disableProgressBar());
   }  
 }

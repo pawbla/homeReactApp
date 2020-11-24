@@ -4,7 +4,6 @@ import {IconButton} from '@material-ui/core';
 import './styles.css'
 
 function MainSection({component: Component, ...props}) {
-
     return (
         <div>
             <div className="main_header">
