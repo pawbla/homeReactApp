@@ -56,7 +56,7 @@ function MyProfile(props) {
               values={values} 
               onSubmit={onSubmit}
               showPassPopup={showPopup} />
-            <Modal component={MyProfilePopup} ref={childRef}/>
+            <Modal component={MyProfilePopup} ref={childRef} user_id={values.user_id}/>
         </div>
     );
 }
