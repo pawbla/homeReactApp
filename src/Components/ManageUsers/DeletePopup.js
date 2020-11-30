@@ -11,7 +11,7 @@ function DeletePopup(props) {
     const deleteUser = async () => {
         await props.callDELETE(deleteEndpoint, props.user_id, deleteErrMsg);
         props.hidePopup();
-        window.location.reload();
+        props.reload();
     }
 
     return (

@@ -41,7 +41,7 @@ function MyProfile(props) {
     const onSubmit = async (event) => {
       event.preventDefault();
       await props.callPUT(updateEndpoint, values.user_id, {...values, ['role']: {role: values.role}}, errorMsgPut);
-      window.location.reload(); 
+      onEnter();
     }
 
     return (

@@ -46,7 +46,9 @@ const fetchJwtToken = (user, password) => {
     await callGetJwtTokenApi(user, password)
       .then(json => dispatch(setJwtTokenFetched(json)))
       .catch(error => {
-        alert("Niepoprawne dane użytkownika. \n" + error);
+        console.log("=====================");
+        console.log("============ " + JSON.stringify(error))
+        alert("Niepoprawne dane użytkownika. \n" + error.message);
         dispatch(logOutUserOrError());
       });
   }

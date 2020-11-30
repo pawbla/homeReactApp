@@ -37,7 +37,6 @@ function MyProfilePopup(props) {
             oldPassword: values.oldPass,
             newPassword: values.newPass
         }
-        console.log("==============" + JSON.stringify(props))
         const resp = await props.callPUT(changePassEndpoint, props.user_id, objToSend, errorMessage);
         if (resp.hasError) {
             setText(initState);

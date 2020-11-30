@@ -33,7 +33,7 @@ function EditPopup(props) {
         const resp = await props.callPUT(updateEndpoint, values.user_id, values, errorMessage);
         if (!resp.hasError) {
             props.hidePopup();
-            window.location.reload(); 
+            props.reload();
         }
     }
 

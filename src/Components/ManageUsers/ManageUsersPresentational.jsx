@@ -16,6 +16,10 @@ function ManageUsersPresentational(props) {
         setText(event.target.value);
     }
 
+    const reload = () => {
+        window.location.reload();
+    }
+
     function filter(element, index, array) {
         var value = searchStr.toLowerCase();
         if (element.username.toLowerCase().includes(value) || element.firstName.toLowerCase().includes(value) 
@@ -32,11 +36,12 @@ function ManageUsersPresentational(props) {
                         placeholder="Szukaj"
                         onChange={handleChange}
                         value={searchStr}
+                        reload={reload}
                         width="250px"></HsInput>
             </div>
             <ul className="users">
                 {props.users.users.filter(filter).sort(compareUsernames).map((item, index) => 
-                    <Item item={item} key={index} />
+                    <Item item={item} key={index} refresh={props.refresh}/>
                 )}
             </ul>
         </div> 
@@ -85,8 +90,8 @@ function Item(props) {
                     <DeleteIcon color="primary" fontSize="large"/>
                 </IconButton>
             </div>
-            <Modal component={EditPopup} ref={editRef} item={props.item}/>
-            <Modal component={DeletePopup} ref={deleteRef} user_id={props.item.user_id}/>
+            <Modal component={EditPopup} ref={editRef} item={props.item} reload={props.refresh}/>
+            <Modal component={DeletePopup} ref={deleteRef} user_id={props.item.user_id} reload={props.refresh}/>
 
         </li>
     )

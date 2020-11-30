@@ -15,7 +15,7 @@ export const callGetJwtTokenApi = (user, password) => {
     })
     .then(response => {
         if (!response.ok) {
-          throw new Error({msg: `Received response code: ${response.status} ${response.statusText}`, st: "qe"});
+          throw ({msg: `Received response code: ${response.status} ${response.statusText}`, st: "qe"});
         }
         return response.json()          
     })
@@ -32,7 +32,7 @@ export const callGetApi = (endpoint, queryParams, token) => {
       })
       .then(response => {
         if (!response.ok) {
-          throw new Error(errorObj(response.status, response.statusText));
+          throw (errorObj(response.status, response.statusText));
         }
         return response.json()          
     })
@@ -50,7 +50,7 @@ export const callInternalApi = (endpoint, queryParams) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error({status: response.status, text: response.statusText});
+        throw ({status: response.status, text: response.statusText});
       }
       return response.json()          
   })
@@ -74,7 +74,7 @@ export const callPostApi = (endpoint, body, token) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(errorObj(response.status, response.statusText));
+        throw (errorObj(response.status, response.statusText));
       }
       return response.json()          
   })
@@ -91,7 +91,7 @@ export const callPostApiNoAuth = (endpoint, body) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(errorObj(response.status, response.statusText));
+        throw (errorObj(response.status, response.statusText));
       }
       return response.json()          
   })
@@ -109,7 +109,7 @@ export const callPutApi = (endpoint, param, body, token) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(errorObj(response.status, response.statusText));
+        throw (errorObj(response.status, response.statusText));
       }                
   })
 }
@@ -125,7 +125,7 @@ export const callDeleteApi = (endpoint, deleteParam, token) => {
     })
     .then(response => {
       if (!response.ok) {
-        throw new Error(errorObj(response.status, response.statusText));
+        throw (errorObj(response.status, response.statusText));
       }
       return response.json()          
   })
