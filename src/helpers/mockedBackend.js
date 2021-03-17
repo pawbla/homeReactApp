@@ -1,6 +1,7 @@
 import {userAdmin, userUser} from '../Mocks/loginMocks'; 
 import { usersList} from '../Mocks/manageUsersMock';
 import {weatherResp} from '../Mocks/weatherMocks';
+import {followedNotificationsResp} from '../Mocks/followedNotificationsMock';
 import {connectorDetailsResp} from '../Mocks/connectorDetailsMock';
 
 let mockNo = 1;
@@ -55,6 +56,9 @@ export function mockedBackend() {
                 } else if (url.endsWith('connectors')) {
                     console.log("== MOCK == Mocked response for weather. Loged as USER. Status: OK");
                     resolve({ ok: true, json: () => connectorDetailsResp});
+                } else if (url.endsWith('followednotifications?login=1')) {
+                    console.log("== MOCK == Mocked response for followed notifications.");
+                    resolve({ ok: true, json: () => followedNotificationsResp});
                 } else {
                     console.log("== MOCK == Uncovered request, status: NOK. URL: " + url);
                     reject('Response from mock - Incorrect datas');

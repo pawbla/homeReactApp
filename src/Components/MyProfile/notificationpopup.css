@@ -1,0 +1,40 @@
+.notification_popup {
+    position: absolute;
+    left: 35%;
+    right: 35%;
+    top: 25%;
+    bottom: 25%;
+    width: 350px;
+    height:350px;
+    margin: auto;
+    background: #f8f8ff;
+    border-radius: 15px;
+    border: 3px #05A8F5 solid;
+    padding: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.notification_popup > h2 {
+    color: #056DF5;
+}
+
+.notification_popup > form {
+    margin: 0px 15px;
+    overflow-y: auto;
+}
+
+.notification_popup > form > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.notification_popup > div:last-child {
+    margin-top: auto;
+    margin-bottom: 10px;
+}

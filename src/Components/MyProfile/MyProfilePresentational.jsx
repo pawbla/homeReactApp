@@ -40,6 +40,11 @@ function MyProfilePresentational(props) {
                             width="29%"
                             onClick={props.showPassPopup}></HsButton>
             </div>
+            <div>
+                <HsButton text="Ustawienia powiadomień"
+                            width="29%"
+                            onClick={props.showNotificationsPopup}></HsButton>
+            </div>
         </div>
     );
 }

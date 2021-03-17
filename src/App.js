@@ -14,7 +14,7 @@ import {fetchUserData} from './actions/';
 
 //Mocked service for testing purpose, remove when deployed for integration
 import { mockedBackend } from './helpers/mockedBackend';
-//mockedBackend();
+mockedBackend();
 
 class App extends React.Component {
 

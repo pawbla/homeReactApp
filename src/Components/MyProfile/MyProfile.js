@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import MyProfilePresentational from './MyProfilePresentational';
 import MyProfilePopup from './MyProfilePopup';
+import NotificationsPopup from './NotificationsPopup';
 import MainSection from '../MainSection/MainSection';
 import { connect } from "react-redux";
 import {callGET, callPUT} from '../../actions';
@@ -18,10 +19,17 @@ function MyProfile(props) {
     const initState = {firstName: "", lastName: "", email: ""};
 
     const [values, setText] = useState(initState);
-    const childRef = useRef();
+    const [toggleNotification, setToggleN] = useState(false);
+    const deletePassRef = useRef();
+    const notificationOptPRef = useRef();
 
     const showPopup = () => {
-        childRef.current.openPopup();
+      deletePassRef.current.openPopup();
+    }
+
+    const showNotificationPopup = async() => {
+      setToggleN(!toggleNotification);
+      notificationOptPRef.current.openPopup();
     }
 
     useEffect(() => {
@@ -55,8 +63,11 @@ function MyProfile(props) {
               onChange={onChange}
               values={values} 
               onSubmit={onSubmit}
-              showPassPopup={showPopup} />
-            <Modal component={MyProfilePopup} ref={childRef} user_id={values.user_id}/>
+              showPassPopup={showPopup}
+              showNotificationsPopup={showNotificationPopup}/>
+            <Modal component={MyProfilePopup} ref={deletePassRef} user_id={values.user_id} />
+            <Modal component={NotificationsPopup} ref={notificationOptPRef} user_id={values.user_id}
+                    togglePopup={toggleNotification}/>
         </div>
     );
 }

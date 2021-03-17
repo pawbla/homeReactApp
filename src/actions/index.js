@@ -1,4 +1,4 @@
-import {callGetApi, callPostApi, callPutApi, 
+import {callGetApi, callPostApi, callPutApi, callPatchApi,
   callDeleteApi, callGetJwtTokenApi} from '../libs/callRestApi';
 
 const setJwtTokenFetched = (authResp) => ({
@@ -46,8 +46,6 @@ const fetchJwtToken = (user, password) => {
     await callGetJwtTokenApi(user, password)
       .then(json => dispatch(setJwtTokenFetched(json)))
       .catch(error => {
-        console.log("=====================");
-        console.log("============ " + JSON.stringify(error))
         alert("Niepoprawne dane użytkownika. \n" + error.message);
         dispatch(logOutUserOrError());
       });
@@ -94,12 +92,14 @@ export const registerUser = (body) => {
   }
 }
 
-export const callGET = (endpoint, query, errorMessage) => {
+export const callGET = (endpoint, query, errorMessage, isSimply = false) => {
   return async (dispatch, getState) => {
     dispatch(enableProgressBar());
     return await callGetApi(endpoint, query, getState().loggedUser.jwtToken)
       .then(json => {
-        dispatch(setFetchedData(json, endpoint));
+        if (!isSimply) {
+          dispatch(setFetchedData(json, endpoint));
+        }
         dispatch(disableProgressBar());
         return json;
       })
@@ -135,6 +135,25 @@ export const callPUT = (endpoint, param, body, errorMessage) => {
   return async (dispatch, getState) => {
     dispatch(enableProgressBar());
     return await callPutApi(endpoint, param, body, getState().loggedUser.jwtToken)
+      .then(() => {
+        dispatch(disableProgressBar());
+        return {hasError: false};
+      })
+      .catch(error => {
+        dispatch(disableProgressBar());
+        if (error.status === "401") {
+          dispatch(logOutUserOrError());
+        }
+        alert(`${errorMessage} \n ${error.message}`);
+        return {hasError: true};
+      });
+  }   
+}
+
+export const callPATCH = (endpoint, param, body, errorMessage) => {
+  return async (dispatch, getState) => {
+    dispatch(enableProgressBar());
+    return await callPatchApi(endpoint, param, body, getState().loggedUser.jwtToken)
       .then(() => {
         dispatch(disableProgressBar());
         return {hasError: false};

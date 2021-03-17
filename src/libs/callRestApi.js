@@ -114,6 +114,23 @@ export const callPutApi = (endpoint, param, body, token) => {
   })
 }
 
+export const callPatchApi = (endpoint, param, body, token) => {
+  const url = `${apiUrl}${endpoint}/${param}`;
+  return fetch(url, {
+      method: 'PATCH',
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': 'Bearer ' + token,
+      },
+      body: JSON.stringify(body)
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw (errorObj(response.status, response.statusText));
+      }                
+  })
+}
+
 export const callDeleteApi = (endpoint, deleteParam, token) => {
   const url = `${apiUrl}${endpoint}/${deleteParam}`;
   return fetch(url, {
