@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
-//import NotificationsIcon from '@material-ui/icons/Notifications';
-//import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import {IconButton} from '@material-ui/core';
 import {makeStyles } from '@material-ui/core/styles';
@@ -13,6 +13,8 @@ import Popover from '@material-ui/core/Popover';
 import UserMenu from './Components/menu/UserMenu';
 import { LinearProgress } from '@material-ui/core';
 import { connect } from 'react-redux';
+import Overlay from './libs/overlay';
+import NotificationsPopup from './Components/Notifications/NotificationsPopup';
 
 const useStyles = makeStyles(theme => ({
   space: {
@@ -70,6 +72,9 @@ const useStyles = makeStyles(theme => ({
     height: '4px',
     zIndex: '10'
 },
+notify: {
+  position: 'relative'
+}
 }));
 
 function Header(props) {
@@ -88,7 +93,7 @@ function Header(props) {
             </Typography>
             <div className={styles.space} />
             <div className={styles.desktop}>
-              <Notifications />
+              <NotificationsExt />
               <UserMenu />
             </div>
             <div className={styles.mobile}>
@@ -170,7 +175,7 @@ function MobileRightMenu() {
         onClose={handleClose}
         color="inherit">
           <div className={styles.mobileRightMenu}>
-            <Notifications />
+            <NotificationsExt />
             <UserMenu />
           </div>
       </Popover>
@@ -178,22 +183,37 @@ function MobileRightMenu() {
   );
 }
 
-function Notifications() {
-  //const styles = useStyles();
+function Notifications(props) {
+  const styles = useStyles();
+  const popupRef = useRef();
+
+  const openNotifications = () => {
+    popupRef.current.openPopup();
+  }
+
   return(
-    <div>
-      {/*<IconButton className={styles.iconButton}>
-          <Badge badgeContent={12} color="secondary">
+    <div className={styles.notify}>
+      <IconButton className={styles.iconButton} onClick={openNotifications}>
+          <Badge badgeContent={props.notificationsSize} color="secondary">
             <NotificationsIcon />
           </Badge>
-  </IconButton>*/}
+       </IconButton> 
+       <Overlay component={NotificationsPopup} ref={popupRef} />
     </div>
   )
 }
 
+const mapStateToPropsNotifications = (state) => {
+  return {
+    notificationsSize: state.loggedUser.unreadNotifications 
+  }
+};
+
+const NotificationsExt = connect(mapStateToPropsNotifications)(Notifications);
+
 const mapStateToProps = (state) => {
   return {
-      isProgress: state.isProgressBar
+      isProgress: state.isProgressBar,
   }
 };
 

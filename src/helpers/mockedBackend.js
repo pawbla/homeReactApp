@@ -3,6 +3,7 @@ import { usersList} from '../Mocks/manageUsersMock';
 import {weatherResp} from '../Mocks/weatherMocks';
 import {followedNotificationsResp} from '../Mocks/followedNotificationsMock';
 import {connectorDetailsResp} from '../Mocks/connectorDetailsMock';
+import {notificationsListResp, notificationsSizeResp} from '../Mocks/notificationsMock';
 
 let mockNo = 1;
 
@@ -59,6 +60,12 @@ export function mockedBackend() {
                 } else if (url.endsWith('followednotifications?login=1')) {
                     console.log("== MOCK == Mocked response for followed notifications.");
                     resolve({ ok: true, json: () => followedNotificationsResp});
+                } else if (url.endsWith('notifications/list?login=1')) {
+                    console.log("== MOCK == Mocked response for notifications list.");
+                    resolve({ ok: true, json: () => notificationsListResp});
+                } else if (url.endsWith('notifications/size?login=1')) {
+                    console.log("== MOCK == Mocked response for notifications size.");
+                    resolve({ ok: true, json: () => notificationsSizeResp});
                 } else {
                     console.log("== MOCK == Uncovered request, status: NOK. URL: " + url);
                     reject('Response from mock - Incorrect datas');

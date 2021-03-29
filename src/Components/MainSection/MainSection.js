@@ -1,9 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import {IconButton} from '@material-ui/core';
+import {fetchNotificationSize} from '../../actions/';
+import { connect } from 'react-redux';
 import './styles.css'
 
 function MainSection({component: Component, ...props}) {
+
+    useEffect(() => {
+        props.fetchNotificationSize();
+     }, []);
+
+
     return (
         <div>
             <div className="main_header">
@@ -29,4 +37,7 @@ function MainSection({component: Component, ...props}) {
     )
 }
 
-export default MainSection;
+
+const mapDispatchToProps = {fetchNotificationSize};
+
+export default connect(null, mapDispatchToProps)(MainSection);

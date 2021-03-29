@@ -13,7 +13,6 @@ import './modal.css'
  * the second elements are props
  */
 const Modal = forwardRef(({ component: Component, ...props}, ref) => {
-// const Modal = forwardRef(({component: Component, ref, ...props}) => {
     const [isPopup, showPopup] = useState(false);
 
 

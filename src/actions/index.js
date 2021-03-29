@@ -11,6 +11,11 @@ const setLoggedUserFetched = (user) => ({
   user
 });
 
+const setUnreadNotificationsSize = (notification) => ({
+  type: 'SET_READ_NOTIFICATIONS_SIZE',
+  notification
+});
+
 export const logOutUserOrError = () => ({
   type: 'LOG_OUT_USER_OR_ERROR'
 });
@@ -61,6 +66,18 @@ export const fetchUserData = (user) => {
       .catch(error => {
         dispatch(logOutUserOrError());
         alert("Nie można pobrać danych użytkownika. \n" + error.message);
+      });
+  }
+}
+
+export const fetchNotificationSize = () => {
+  return async (dispatch, getState) => {
+    const queryParams = `/size?login=${getState().loggedUser.id}`;
+    const endpoint = 'notifications';
+    await callGetApi(endpoint, queryParams, getState().loggedUser.jwtToken)
+      .then(json => dispatch(setUnreadNotificationsSize(json)))
+      .catch(error => {
+        alert("Nie można pobrać informacji od nieprzeczytanych powiadomieniach. \n" + error.message);
       });
   }
 }

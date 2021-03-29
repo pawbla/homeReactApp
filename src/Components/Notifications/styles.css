@@ -1,0 +1,44 @@
+.notifications_popup {
+    position: absolute;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 5px;
+    top:  54px;
+    right: 10px;
+    max-width: 550px;
+    min-width: 350px;
+    color: #3f51b5;
+    border: 3px #05A8F5 solid;
+    background-color:ghostwhite;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 10;
+}
+
+.notifications_popup > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 8px;
+}
+
+.notifications_popup > div:not(:first-child) {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.notifications_popup .item {
+    border-top: 2px #05A8F5 solid;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 5px 8px;
+}
+
+.notifications_popup .item > .unread {
+    font-weight: bold;
+}
+
+.notifications_popup .item > div:nth-child(2) {
+    flex-grow: 2;
+    padding: 0px 10px;
+}

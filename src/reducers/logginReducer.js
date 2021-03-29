@@ -5,18 +5,21 @@ export const loggedUser = (state = '', action) => {
     case 'FETCHED_JWT_TOKEN_SUCCESS':
       return {
         ...state,
+        id: "",
         user: "",
         role: "",
         firstName: "",
         lastName: "",
         jwtToken: action.authResp.access_token,
         isAuthenticated: false,
-        isBeingAuthenticated: true
+        isBeingAuthenticated: true,
+        unreadNotifications: 0
       }
     case 'FETCHED_USER_DATA_SUCCESS':
       return {
         ...state, 
           isAuthenticated: true,
+          id: action.user.user_id,
           user: action.user.username,
           role: action.user.role,
           firstName: action.user.firstName,
@@ -29,11 +32,17 @@ export const loggedUser = (state = '', action) => {
           jwtToken: "",
           isAuthenticated: false,
           isBeingAuthenticated: false,
+          id: "",
           user: "",
           role: "",
           firstName: "",
           lastName: ""
         }
+    case 'SET_READ_NOTIFICATIONS_SIZE':
+      return {
+        ...state,
+        unreadNotifications: action.notification.read
+      }
     default:
       return state
   }
