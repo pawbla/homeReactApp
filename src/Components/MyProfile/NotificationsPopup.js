@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import NotificationsPopupPresentational from './NotificationsPopupPresentational';
 import { connect } from "react-redux";
-import {callGET, callPATCH} from '../../actions';
+import {callGET, callPATCH, fetchNotificationSize} from '../../actions';
 
 
 function NotificationsPopup(props) {
@@ -32,7 +32,7 @@ function NotificationsPopup(props) {
      const onEnter = async() => {
          let notifications;
          if (props.user_id != undefined) {
-            notifications = await props.callGET(notificatonsEndpoint, `?login=${props.user_id}`, readNotifyErrMsg, true);
+            notifications = await props.callGET(notificatonsEndpoint, `?user_id=${props.user_id}`, readNotifyErrMsg, true);
          }
         if (notifications != undefined) {
             setValues(notifications.followed_notifications);
@@ -43,6 +43,7 @@ function NotificationsPopup(props) {
         event.preventDefault();
         const resp = await props.callPATCH(notificatonsEndpoint, props.user_id,  prepareToSend(), cannotUpdateErrMsg);
         if (!resp.hasError) {
+            props.fetchNotificationSize();
             props.hidePopup();
             props.reload();
         }
@@ -53,7 +54,7 @@ function NotificationsPopup(props) {
         values.forEach(value => {
             item[value.id] = value.followed
         });
-        console.log("ITEM--- " + JSON.stringify(item));
+        return item;
     }
 
     return (
@@ -64,6 +65,6 @@ function NotificationsPopup(props) {
     )
 };
 
-const mapDispatchToProps = {callGET, callPATCH};
+const mapDispatchToProps = {callGET, callPATCH, fetchNotificationSize};
 
 export default connect(null, mapDispatchToProps)(NotificationsPopup);

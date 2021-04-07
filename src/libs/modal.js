@@ -9,7 +9,7 @@ import './modal.css'
  * - Above component should implement closing function referenced by props.hidePopup
  * - Presentational Component should implement mechanism which allows to open modal:
  * 
- * @param {*} param0 - contains two elements, firstone is Component which will be rendered,
+ * @param {*} param0 - contains two elements, first one is Component which will be rendered,
  * the second elements are props
  */
 const Modal = forwardRef(({ component: Component, ...props}, ref) => {

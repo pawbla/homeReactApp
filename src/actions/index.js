@@ -72,7 +72,7 @@ export const fetchUserData = (user) => {
 
 export const fetchNotificationSize = () => {
   return async (dispatch, getState) => {
-    const queryParams = `/size?login=${getState().loggedUser.id}`;
+    const queryParams = `/size?user_id=${getState().loggedUser.id}`;
     const endpoint = 'notifications';
     await callGetApi(endpoint, queryParams, getState().loggedUser.jwtToken)
       .then(json => dispatch(setUnreadNotificationsSize(json)))

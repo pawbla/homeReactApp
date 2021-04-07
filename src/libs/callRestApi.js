@@ -149,7 +149,6 @@ export const callDeleteApi = (endpoint, deleteParam, token) => {
 }
 
 const errorObj = (status, text) => {
-  console.log("sdad = " + status + " adasd " + text)
   return {
     message: `Received response code: ${status} ${text}`,
     respCode: status,

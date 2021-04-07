@@ -4,13 +4,12 @@ import {IconButton} from '@material-ui/core';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import MarkunreadIcon from '@material-ui/icons/Markunread';
 
-import {notificationsListResp} from '../../Mocks/notificationsMock'; //for test during presentational development
 
-export default function NotificationPopupPresentational() {
+export default function NotificationPopupPresentational(props) {
     return (
         <div className="notifications_popup">
-            <NotificationHeader />
-            <NotificationList notifications={notificationsListResp.notifications}/>
+            <NotificationHeader size={props.notifications.length}/>
+            <NotificationList notifications={props.notifications} onClick={props.onClick}/>
         </div>
     )
 }
@@ -18,8 +17,7 @@ export default function NotificationPopupPresentational() {
 function NotificationHeader(props) {
     return (
         <div>
-            <span>Oznacz wszystkie</span>
-            <EntityReadUnread isRead={true}/>
+            <span>Ilość powiadomień: {props.size}</span>
         </div>
     )
 }
@@ -29,8 +27,8 @@ function NotificationList(props) {
         <div>
             {
                 props.notifications.map((item, index) => 
-                    <NotificationItem item={item} key={index}/>
-                )
+                    <NotificationItem item={item} key={index} pos={index} onClick={props.onClick}/>
+                )      
             }
         </div>
     )
@@ -46,7 +44,7 @@ function NotificationItem(props) {
                 {props.item.entity.message}
             </div>
             <div>
-                <EntityReadUnread isRead={props.item.read}/>
+                <EntityReadUnread isRead={props.item.read} onClick={() => props.onClick(props.pos)}/>
             </div>
         </div>
     )
@@ -55,15 +53,15 @@ function NotificationItem(props) {
 function EntityTypeIcon(props) {
     switch(props.entityTypeId) {
         case 1:
-          return <i class="fa fa-user-plus fa-2x"></i>;
+          return <i className="fa fa-user-plus fa-2x"></i>;
         case 2:
-            return <i class="fa fa-user-times fa-2x"></i>;
+            return <i className="fa fa-user-times fa-2x"></i>;
         case 3:
-            return <i class="fa fa-exclamation-triangle fa-2x"></i>;  
+            return <i className="fa fa-exclamation-triangle fa-2x"></i>;  
         case 4:
-            return <i class="fa fa-eye-slash fa-2x"></i>;
+            return <i className="fa fa-eye-slash fa-2x"></i>;
         default:
-            return <i class="fa fa-exclamation fa-2x"></i>;
+            return <i className="fa fa-exclamation fa-2x"></i>;
     }
 }
 

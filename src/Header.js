@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
@@ -184,13 +184,15 @@ function MobileRightMenu() {
 }
 
 function Notifications(props) {
+  const [toggleNotification, setToggleN] = useState(false);
   const styles = useStyles();
   const popupRef = useRef();
 
   const openNotifications = () => {
+    setToggleN(!toggleNotification);
     popupRef.current.openPopup();
   }
-
+  
   return(
     <div className={styles.notify}>
       <IconButton className={styles.iconButton} onClick={openNotifications}>
@@ -198,13 +200,15 @@ function Notifications(props) {
             <NotificationsIcon />
           </Badge>
        </IconButton> 
-       <Overlay component={NotificationsPopup} ref={popupRef} />
+       <Overlay component={NotificationsPopup} ref={popupRef} togglePopup={toggleNotification} 
+        user_id={props.user_id} popupClass=".notifications_popup"/>
     </div>
   )
 }
 
 const mapStateToPropsNotifications = (state) => {
   return {
+    user_id: state.loggedUser.id,
     notificationsSize: state.loggedUser.unreadNotifications 
   }
 };
@@ -213,7 +217,7 @@ const NotificationsExt = connect(mapStateToPropsNotifications)(Notifications);
 
 const mapStateToProps = (state) => {
   return {
-      isProgress: state.isProgressBar,
+    isProgress: state.isProgressBar,
   }
 };
 

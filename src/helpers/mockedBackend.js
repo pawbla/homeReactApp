@@ -57,13 +57,13 @@ export function mockedBackend() {
                 } else if (url.endsWith('connectors')) {
                     console.log("== MOCK == Mocked response for weather. Loged as USER. Status: OK");
                     resolve({ ok: true, json: () => connectorDetailsResp});
-                } else if (url.endsWith('followednotifications?login=1')) {
+                } else if (url.endsWith('followednotifications?user_id=1')) {
                     console.log("== MOCK == Mocked response for followed notifications.");
                     resolve({ ok: true, json: () => followedNotificationsResp});
-                } else if (url.endsWith('notifications/list?login=1')) {
+                } else if (url.endsWith('notifications/list?user_id=1')) {
                     console.log("== MOCK == Mocked response for notifications list.");
                     resolve({ ok: true, json: () => notificationsListResp});
-                } else if (url.endsWith('notifications/size?login=1')) {
+                } else if (url.endsWith('notifications/size?user_id=1')) {
                     console.log("== MOCK == Mocked response for notifications size.");
                     resolve({ ok: true, json: () => notificationsSizeResp});
                 } else {
