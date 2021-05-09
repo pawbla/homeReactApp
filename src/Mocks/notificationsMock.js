@@ -15,7 +15,7 @@ export const notificationsListResp = {
             "read": true,
             "id": 2,
             "entity": {
-                "create": "2020-03-12 00:00:00.0",
+                "create": "2020-03-12 00:01:00.0",
                 "id": 4,
                 "entity_type_id": 2, //'User deleted'
                 "message": "Użytkownik o ID pawel został usunięty.",
@@ -26,7 +26,7 @@ export const notificationsListResp = {
             "read": false,
             "id": 4,
             "entity": {
-                "create": "2020-02-12 00:00:00.0",
+                "create": "2020-01-12 00:00:00.0",
                 "id": 2,
                 "entity_type_id": 3, //'Sensor error'
                 "message": "Problem z odczytem danych z czujnika pogody",
@@ -37,7 +37,7 @@ export const notificationsListResp = {
             "read": true,
             "id": 5,
             "entity": {
-                "create": "2020-02-12 00:00:00.0",
+                "create": "2020-03-12 00:02:00.0",
                 "id": 2,
                 "entity_type_id": 4, //'Expired notification removed'
                 "message": "Powiadomienie 123 zostało usunięte jako przestarzałe",

@@ -26,7 +26,9 @@ function NotificationList(props) {
     return (
         <div>
             {
-                props.notifications.map((item, index) => 
+                props.notifications.sort((a, b)=> {
+                    return new Date(b.entity.create) - new Date(a.entity.create);
+                }).map((item, index) => 
                     <NotificationItem item={item} key={index} pos={index} onClick={props.onClick}/>
                 )      
             }
